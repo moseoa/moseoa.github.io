@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seoa Mo — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --ink: #1A1714;
+    --rust: #C4440A;
+    --gold: #C9A84C;
+    --muted: #7A7268;
+    --border: #D8D0C4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(245, 240, 232, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--rust); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 5rem;
+  }
+
+  .hero-left {
+    padding: 8rem 4rem 4rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--border);
+  }
+
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 2rem;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    line-height: 1.05;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 440px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.25rem;
+    transition: color 0.2s, border-color 0.2s;
+    width: fit-content;
+  }
+
+  .hero-cta:hover { color: var(--rust); border-color: var(--rust); }
+
+  .hero-right {
+    padding: 8rem 4rem 4rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .stat-block {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat-block:first-child { border-top: 1px solid var(--border); }
+
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* SECTION HEADERS */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  /* PROJECTS */
+  .projects {
+    padding: 8rem 4rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .project-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--border);
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .project-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .project-card:nth-child(even) { direction: rtl; }
+  .project-card:nth-child(even) > * { direction: ltr; }
+
+  .project-visual {
+    background: var(--ink);
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .project-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform 0.6s ease, opacity 0.3s;
+  }
+
+  .project-card:hover .project-visual img {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+
+  .project-visual-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+  }
+
+  /* LavaLock visual — dark lava lamp aesthetic */
+  .lavalock-bg {
+    background: #0D0B0A;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lava-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .lava-blob:nth-child(1) {
+    width: 180px; height: 220px;
+    background: radial-gradient(circle, #C4440A, #7A1A00);
+    top: 15%; left: 25%;
+    animation-delay: 0s;
+  }
+
+  .lava-blob:nth-child(2) {
+    width: 140px; height: 160px;
+    background: radial-gradient(circle, #E8620A, #C4440A);
+    top: 50%; left: 40%;
+    animation-delay: -2s;
+  }
+
+  .lava-blob:nth-child(3) {
+    width: 100px; height: 130px;
+    background: radial-gradient(circle, #C9A84C, #8A6A1A);
+    top: 65%; left: 20%;
+    animation-delay: -4s;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    33% { transform: translateY(-20px) scale(1.05); }
+    66% { transform: translateY(10px) scale(0.97); }
+  }
+
+  .lavalock-wordmark {
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: rgba(245, 240, 232, 0.9);
+    letter-spacing: 0.05em;
+    z-index: 2;
+    text-shadow: 0 0 40px rgba(196, 68, 10, 0.5);
+  }
+
+  /* RedNote visual */
+  .rednote-bg {
+    background: #8B1A1A;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    padding: 2px;
+  }
+
+  .rednote-cell {
+    background: #6B0F0F;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: rgba(245, 240, 232, 0.7);
+    transition: background 0.3s;
+  }
+
+  .rednote-cell:hover { background: #9B2A2A; }
+
+  .project-info {
+    padding: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--cream);
+  }
+
+  .project-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1.5rem;
+  }
+
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .project-subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .project-desc {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  .project-learning {
+    padding: 1.25rem 1.5rem;
+    border-left: 2px solid var(--rust);
+    background: rgba(196, 68, 10, 0.04);
+    margin-bottom: 2rem;
+  }
+
+  .project-learning-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-learning p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--ink);
+    font-style: italic;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.2rem;
+    width: fit-content;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .project-link:hover { color: var(--rust); border-color: var(--rust); }
+
+  /* ABOUT */
+  .about {
+    padding: 8rem 4rem;
+    border-top: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text p strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .skill-item {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+
+  .skill-item:nth-child(even) { border-right: none; }
+
+  .skill-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .skill-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 8rem 4rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .contact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-title em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .contact-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+
+  .contact-email {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 0.25rem;
+    transition: color 0.2s, border-color 0.2s;
+    display: inline-block;
+  }
+
+  .contact-email:hover { color: var(--rust); border-color: var(--rust); }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* SCROLL ANIMATION */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-left > * {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .hero-tag { animation-delay: 0.1s; }
+  .hero-name { animation-delay: 0.25s; }
+  .hero-desc { animation-delay: 0.4s; }
+  .hero-cta { animation-delay: 0.55s; }
+
+  .hero-right .stat-block {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .hero-right .stat-block:nth-child(1) { animation-delay: 0.3s; }
+  .hero-right .stat-block:nth-child(2) { animation-delay: 0.45s; }
+  .hero-right .stat-block:nth-child(3) { animation-delay: 0.6s; }
+
+  /* APP SCREENSHOTS GALLERY */
+  .app-screenshots {
+    display: flex;
+    gap: 8px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    height: 100%;
+    align-items: center;
+    background: #0D0B0A;
+  }
+
+  .app-screenshots::-webkit-scrollbar { display: none; }
+
+  .app-screenshot-frame {
+    flex-shrink: 0;
+    width: 130px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  }
+
+  .app-screenshot-frame img {
+    width: 100%;
+    display: block;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* VIDEO CONTAINER */
+  .video-container {
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    position: relative;
+    overflow: hidden;
+    background: #1A0A0A;
+  }
+
+  .video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: opacity 0.3s;
+  }
+
+  .project-card:hover .video-container video { opacity: 1; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.25rem 2rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { border-right: none; border-bottom: 1px solid var(--border); padding: 6rem 2rem 3rem; }
+    .hero-right { padding: 3rem 2rem; }
+    .projects { padding: 5rem 2rem; }
+    .project-card { grid-template-columns: 1fr; }
+    .project-card:nth-child(even) { direction: ltr; }
+    .project-visual { min-height: 300px; }
+    .about { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 3rem; }
+    .contact { padding: 5rem 2rem; }
+    footer { padding: 1.5rem 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Seoa Mo</span>
+  <ul class="nav-links">
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Portfolio — 2026</p>
+    <h1 class="hero-name">Seoa<br><em>Mo</em></h1>
+    <p class="hero-desc">Third-year Political Science & Economics student at McMaster University. I build at the intersection of coordination, digital delivery, and creative execution.</p>
+    <a href="#projects" class="hero-cta">View selected work →</a>
+  </div>
+  <div class="hero-right">
+    <div class="stat-block">
+      <div class="stat-number">743</div>
+      <div class="stat-label">Followers grown from zero — RedNote @ McMaster</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">345%</div>
+      <div class="stat-label">Engagement growth through data-driven content</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">Apple</div>
+      <div class="stat-label">Swift Student Challenge Winner — DeltaHacks XII</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <div class="section-header">
+    <span class="section-tag">Selected Work</span>
+    <div class="section-line"></div>
+  </div>
+
+  <!-- PROJECT 1: LavaLock -->
+  <div class="project-card">
+    <div class="project-visual lavalock-bg">
+      <div class="lava-blob"></div>
+      <div class="lava-blob"></div>
+      <div class="lava-blob"></div>
+      <div class="app-screenshots">
+        <div class="app-screenshot-frame">
+          <img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/004/152/571/datas/gallery.jpg" alt="LavaLock Login" loading="lazy">
+        </div>
+        <div class="app-screenshot-frame">
+          <img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/004/152/567/datas/gallery.jpg" alt="LavaLock Save Password" loading="lazy">
+        </div>
+        <div class="app-screenshot-frame">
+          <img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/004/152/566/datas/gallery.jpg" alt="LavaLock Generating" loading="lazy">
+        </div>
+        <div class="app-screenshot-frame">
+          <img src="https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/004/152/568/datas/gallery.jpg" alt="LavaLock 2FA" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <div class="project-info">
+      <p class="project-number">01 — Hackathon / Product</p>
+      <h2 class="project-title">LavaLock</h2>
+      <p class="project-subtitle">Swift Student Challenge Winner · DeltaHacks XII · 2026</p>
+      <p class="project-desc">A cryptographic iOS password manager that transforms physical lava lamp entropy into secure passwords and 2FA codes. I owned branding, UX/UI design, and product direction — driving ideation to a deployable build in under 24 hours alongside three engineers. The logo and name, LavaLock, were designed to capture the moment physical chaos meets digital security.</p>
+      <div class="project-learning">
+        <p class="project-learning-label">Key Learning</p>
+        <p>"End-to-end ownership under constraint is the clearest test of delivery instinct. You learn fast which decisions matter and which don't."</p>
+      </div>
+      <div class="project-tags">
+        <span class="tag">Swift / SwiftUI</span>
+        <span class="tag">UX/UI Design</span>
+        <span class="tag">Branding</span>
+        <span class="tag">AWS</span>
+        <span class="tag">Gemini API</span>
+      </div>
+      <a href="https://devpost.com/software/lavalock" target="_blank" class="project-link">View on Devpost →</a>
+    </div>
+  </div>
+
+  <!-- PROJECT 2: RedNote -->
+  <div class="project-card">
+    <div class="project-visual">
+      <div class="video-container">
+        <video autoplay muted loop playsinline>
+          <source src="Sequence_01.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <div class="project-info">
+      <p class="project-number">02 — Content Strategy / Design</p>
+      <h2 class="project-title">RedNote<br>@ McMaster</h2>
+      <p class="project-subtitle">Communications Assistant · McMaster Student Recruitment · 2025–Present</p>
+      <p class="project-desc">Launched and scaled McMaster's first Chinese social media presence on RedNote (小红书) from zero. I owned end-to-end content production — strategy, copywriting, visual design in Adobe Creative Suite, and performance analytics. Each post was city-specific and culturally considered, with distinct colour palettes and landmark illustrations for Shanghai, Beijing, and Nanjing audiences.</p>
+      <div class="project-learning">
+        <p class="project-learning-label">Key Learning</p>
+        <p>"Building from zero taught me that growth is never about volume — it's about understanding the audience deeply enough that the content earns its place."</p>
+      </div>
+      <div class="project-tags">
+        <span class="tag">Adobe Creative Suite</span>
+        <span class="tag">Content Strategy</span>
+        <span class="tag">Data Analytics</span>
+        <span class="tag">Mandarin</span>
+      </div>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap;">
+        <span style="font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--rust);">743 followers · 345% engagement growth</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div>
+    <div class="section-header" style="margin-bottom:2.5rem;">
+      <span class="section-tag">About</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-text">
+      <p>I am a third-year <strong>Political Science and Economics</strong> student at McMaster University (graduating 2027), with a Dean's Honour List standing and a Minor in Economics. My academic background trains me to understand how institutions, incentives, and people interact — which turns out to be the most useful lens for project delivery.</p>
+      <p>Last summer I interned at <strong>KPMG Canada</strong> as a Management Consultant in Operations, where I coordinated cross-functional workstreams on healthcare client engagements, built financial and operational models, and delivered executive-ready recommendations under real client pressure.</p>
+      <p>I am fluent in <strong>Mandarin and Korean</strong>, conversational in French, and comfortable across technical tooling from Python and SQL to Adobe Creative Suite and Jira.</p>
+    </div>
+  </div>
+  <div>
+    <div class="section-header" style="margin-bottom:2.5rem;">
+      <span class="section-tag">Skills</span>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <p class="skill-name">Languages</p>
+        <p class="skill-value">Mandarin · Korean · French</p>
+      </div>
+      <div class="skill-item">
+        <p class="skill-name">Design</p>
+        <p class="skill-value">Adobe Creative Suite · SwiftUI</p>
+      </div>
+      <div class="skill-item">
+        <p class="skill-name">Technical</p>
+        <p class="skill-value">Python · SQL · R · Jira</p>
+      </div>
+      <div class="skill-item">
+        <p class="skill-name">Office</p>
+        <p class="skill-value">Excel · PowerPoint · SAP</p>
+      </div>
+      <div class="skill-item">
+        <p class="skill-name">Education</p>
+        <p class="skill-value">McMaster University · 2027</p>
+      </div>
+      <div class="skill-item">
+        <p class="skill-name">Certificate</p>
+        <p class="skill-value">CFA: Foundations in Investments</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2 class="contact-title">Let's work<br><em>together</em></h2>
+  <p class="contact-sub">Open to internship opportunities in project delivery, operations, and digital strategy.</p>
+  <a href="mailto:mochristina4@gmail.com" class="contact-email">Get in touch</a>
+</section>
+
+<footer>
+  <span class="footer-text">Seoa Mo — Portfolio 2026</span>
+  <span class="footer-text">McMaster University · Toronto</span>
+</footer>
+
+<script>
+  // Intersection Observer for project cards
+  const cards = document.querySelectorAll('.project-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  cards.forEach(card => observer.observe(card));
+</script>
+
+</body>
+</html>

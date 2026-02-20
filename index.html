@@ -719,23 +719,45 @@
   </div>
 
   <!-- PROJECT 2: RedNote -->
- <div class="project-card">
-    <div class="project-visual">
-      <div class="video-container">
-        <iframe 
-          src="https://drive.google.com/file/d/1OSD_6iBRvgtH4IKLfLtptL9Bm_XHm68M/preview" 
-          width="100%" 
-          height="100%" 
-          allow="autoplay"
-          style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;"
-        ></iframe>
+<div class="project-card">
+    <div class="project-visual" style="background:#6B0F0F;display:flex;flex-direction:column;gap:0;overflow:hidden;">
+      <!-- Image Gallery -->
+      <div class="poster-gallery">
+        <div class="poster-track" id="posterTrack">
+          <div class="poster-slide">
+            <iframe
+              src="https://drive.google.com/file/d/1OSD_6iBRvgtH4IKLfLtptL9Bm_XHm68M/preview"
+              allow="autoplay"
+              style="border:none;width:100%;height:100%;min-height:480px;"
+            ></iframe>
+          </div>
+          <div class="poster-slide">
+            <img src="poster-beijing.png" alt="Beijing Event Poster">
+          </div>
+          <div class="poster-slide">
+            <img src="poster-shanghai.png" alt="Shanghai Event Poster">
+          </div>
+          <div class="poster-slide">
+            <img src="poster-cny.png" alt="Chinese New Year 2026 Poster">
+          </div>
+        </div>
+        <div class="poster-nav">
+          <button class="poster-btn" onclick="prevSlide()">←</button>
+          <div class="poster-dots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
+            <span class="dot" onclick="goToSlide(3)"></span>
+          </div>
+          <button class="poster-btn" onclick="nextSlide()">→</button>
+        </div>
       </div>
     </div>
     <div class="project-info">
-      <p class="project-number">02 — Content Strategy / Design</p>
+      <p class="project-number">02 — Content Strategy / Visual Design</p>
       <h2 class="project-title">RedNote<br>@ McMaster</h2>
       <p class="project-subtitle">Communications Assistant · McMaster Student Recruitment · 2025–Present</p>
-      <p class="project-desc">Launched and scaled McMaster's first Chinese social media presence on RedNote (小红书) from zero. I owned end-to-end content production — strategy, copywriting, visual design in Adobe Creative Suite, and performance analytics. Each post was city-specific and culturally considered, with distinct colour palettes and landmark illustrations for Shanghai, Beijing, and Nanjing audiences.</p>
+      <p class="project-desc">Launched and scaled McMaster's first Chinese social media presence on RedNote (小红书) from zero. I taught myself Adobe Illustrator in one month and shipped real client-facing work — city-specific event posters with distinct colour palettes, landmark illustrations, and bilingual typography for Shanghai, Beijing, and Nanjing audiences.</p>
       <div class="project-learning">
         <p class="project-learning-label">Key Learning</p>
         <p>"Building from zero taught me that growth is never about volume — it's about understanding the audience deeply enough that the content earns its place."</p>

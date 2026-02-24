@@ -98,7 +98,7 @@ const Footer = () => {
             <div className="flex gap-6">
               {[
                 { name: 'github', link: 'https://github.com/moseoa' },
-                { name: 'linkedin', link: 'https://linkedin.com/in/seoa-mo-0a1769257' },
+                { name: 'linkedin', link: 'https://linkedin.com/in/seoamo' },
               ].map((social) => (
                 <a
                   key={social.name}

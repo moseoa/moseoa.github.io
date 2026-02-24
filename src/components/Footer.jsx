@@ -80,7 +80,7 @@ const Footer = () => {
               {currentTime}<span className="text-sm font-normal text-muted ml-2">EST</span>
             </div>
             <div className="text-xs text-muted uppercase">
-              LOC: Hamilton, ON, CA
+              LOC: Toronto, ON, CA
             </div>
           </div>
 

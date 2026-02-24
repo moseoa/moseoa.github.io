@@ -20,7 +20,7 @@ const projects = [
     subtitle: 'Communications Assistant · McMaster Student Recruitment · 2025–Present',
     desc: "Launched and scaled McMaster's first Chinese social media presence on RedNote (小红书) from zero. I taught myself Adobe Illustrator in one month and shipped real client-facing work — city-specific event posters.",
     tags: ['Adobe Creative Suite', 'Adobe Illustrator', 'Adobe Premiere Pro', 'Content Strategy', 'Data Analytics', 'Mandarin'],
-    link: 'https://www.xiaohongshu.com/user/profile/67fa6a84000000000e011528?xsec_token=YBhjfkIRQbuD8hnDKpKfnuKaPN-JEFwJ4LoKeEuPYsHOo=&xsec_source=app_share&xhsshare=CopyLink&shareRedId=ODxGQ0Q9SU02NzUyOTgwNjdHOTk0NTw8&apptime=1771889491&share_id=cab016e564364077a6b3869620cc9782',
+    link: 'https://www.canva.com/design/DAHCMni_xlo/wB3IpNEtiJJmz8yHET0ooQ/edit?utm_content=DAHCMni_xlo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton',
     stats: '1.2k followers · 345% engagement growth · 1 month to ship',
     visualClass: 'rednote-bg',
     isRedNote: true

@@ -3,6 +3,17 @@ import { PROJECTS_BG_ASCII } from '../assets/data/ascii';
 
 const projects = [
   {
+    id: 3, 
+    title: 'Does a Threshold-Based Diagnostic Consistency Framework for Women\'s Health Exist Within Family Physician Training in Canada?',
+    type: 'Research / Policy',
+    subtitle: 'Scoping Review',
+    desc: 'Health Policy Work',
+    tags: ['Health Policy', 'Women\'s Health', 'Family Physician Training'],
+    link: 'familymed.my.canva.site',
+    visualClass: 'healthpolicy-bg',
+    isHealthPolicy: true
+  },
+  {
     id: 1,
     title: 'LavaLock',
     type: 'Hackathon / Product',
@@ -66,7 +77,18 @@ const ProjectCard = ({ project }) => {
             <div className="absolute w-[150%] h-[1px] bg-white/20 rotate-45 top-[60%] left-[-25%]" />
           </>
         )}
-        <div className={`z-10 font-playfair text-2xl drop-shadow-lg ${project.isRedNote ? 'text-rust' : 'text-white'}`}>{project.title}</div>
+        {project.isHealthPolicy && (
+          <>
+            <div className="absolute w-full h-full bg-[#0F766E]/10" />
+            <div className="absolute rounded-full blur-[50px] animate-[float_8s_ease-in-out_infinite] w-[250px] h-[250px] bg-[#0F766E]/20 top-[10%] left-[-10%]" />
+            <div className="absolute rounded-full blur-[60px] animate-[float_10s_ease-in-out_infinite] w-[300px] h-[300px] bg-[#0EA5E9]/20 bottom-[-15%] right-[-10%] delay-[-3s]" />
+            <div className="absolute w-[150%] h-[1px] bg-white/10 rotate-12 top-[20%] left-[-25%]" />
+            <div className="absolute w-[150%] h-[1px] bg-white/10 rotate-12 top-[40%] left-[-25%]" />
+            <div className="absolute w-[150%] h-[1px] bg-white/10 rotate-12 top-[60%] left-[-25%]" />
+            <div className="absolute w-[150%] h-[1px] bg-white/10 rotate-12 top-[80%] left-[-25%]" />
+          </>
+        )}
+        <div className={`z-10 font-playfair text-2xl drop-shadow-lg px-8 text-center ${project.isRedNote ? 'text-rust' : 'text-white'}`}>{project.title}</div>
       </div>
 
       <div className="p-14 flex flex-col justify-center bg-cream">

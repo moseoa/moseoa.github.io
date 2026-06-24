@@ -88,7 +88,7 @@ const Navbar = () => {
                 <Icon name="github" size={18} /> GitHub
               </a>
               <a 
-                href="https://linkedin.com/in/moseoa" 
+                href="https://ca.linkedin.com/in/seoamo" 
                 target="_blank" 
                 rel="noreferrer" 
                 className="text-muted hover:text-rust transition-colors flex items-center gap-2 font-mono text-[0.75rem] uppercase tracking-[0.15em]"

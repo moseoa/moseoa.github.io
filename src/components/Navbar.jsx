@@ -24,7 +24,7 @@ const Navbar = () => {
           <a href="https://github.com/moseoa" target="_blank" rel="noreferrer" className="text-muted hover:text-rust transition-colors">
             <Icon name="github" size={18} />
           </a>
-          <a href="https://linkedin.com/in/moseoa" target="_blank" rel="noreferrer" className="text-muted hover:text-rust transition-colors">
+          <a href="https://www.linkedin.com/in/seoamo/" target="_blank" rel="noreferrer" className="text-muted hover:text-rust transition-colors">
             <Icon name="linkedin" size={18} />
           </a>
         </div>

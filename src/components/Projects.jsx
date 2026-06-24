@@ -48,7 +48,7 @@ const ProjectCard = ({ project }) => {
       ref={cardRef}
       className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-border mb-12 opacity-0 translate-y-[30px] transition-all duration-700 ease-out even:md:flex-row-reverse"
     >
-      <div className={`min-h-[480px] flex items-center justify-center overflow-hidden relative ${project.visualClass}`}>
+      <div className={`min-h-[300px] md:min-h-[480px] flex items-center justify-center overflow-hidden relative ${project.visualClass}`}>
         {project.isLava && (
           <>
             <div className="absolute rounded-full blur-[40px] animate-[float_6s_ease-in-out_infinite] w-[180px] h-[220px] bg-[radial-gradient(circle,#C4440A,#7A1A00)] top-[15%] left-[25%]" />
@@ -69,7 +69,7 @@ const ProjectCard = ({ project }) => {
         <div className={`z-10 font-playfair text-2xl drop-shadow-lg ${project.isRedNote ? 'text-rust' : 'text-white'}`}>{project.title}</div>
       </div>
 
-      <div className="p-14 flex flex-col justify-center bg-cream">
+      <div className="p-8 md:p-14 flex flex-col justify-center bg-cream">
         <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-rust mb-6">
           {project.id.toString().padStart(2, '0')} — {project.type}
         </p>
@@ -107,7 +107,7 @@ const ProjectCard = ({ project }) => {
 
 const Projects = () => {
   return (
-    <section id="projects" className="px-16 py-32 border-t border-border relative overflow-hidden bg-cream">
+    <section id="projects" className="px-6 md:px-16 py-20 md:py-32 border-t border-border relative overflow-hidden bg-cream">
       {/* Background ASCII Art */}
       <div className="absolute top-0 left-0 w-[150%] h-full pointer-events-none select-none opacity-[0.05] overflow-hidden flex flex-wrap content-start z-0">
         {Array.from({ length: 100 }).map((_, i) => (

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Contact = () => {
   return (
-    <section id="contact" className="px-16 py-32 border-t border-border text-center">
+    <section id="contact" className="px-6 md:px-16 py-20 md:py-32 border-t border-border text-center">
       <h2 className="font-playfair text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.1] tracking-[-0.03em] mb-6">
         Let's work<br /><em className="italic text-rust">together</em>
       </h2>

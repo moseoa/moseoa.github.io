@@ -12,7 +12,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="px-16 py-32 border-t border-border grid grid-cols-1 lg:grid-cols-2 gap-24 items-start relative overflow-hidden bg-cream">
+    <section id="about" className="px-6 md:px-16 py-20 md:py-32 border-t border-border grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start relative overflow-hidden bg-cream">
       {/* Background ASCII Art */}
       <div className="absolute top-0 left-0 w-[150%] h-full pointer-events-none select-none opacity-[0.05] overflow-hidden flex flex-wrap content-start z-0">
         {Array.from({ length: 100 }).map((_, i) => (
@@ -49,7 +49,7 @@ const About = () => {
           {skills.map((skill, index) => (
             <div 
               key={index} 
-              className={`p-6 border-b border-border ${index % 2 === 0 ? 'border-r sm:border-r' : 'sm:border-r-0'}`}
+              className={`p-6 border-b border-border ${index % 2 === 0 ? 'sm:border-r' : ''}`}
             >
               <p className="font-mono text-[0.7rem] uppercase tracking-[0.1em] text-muted mb-2">{skill.name}</p>
               <p className="font-playfair text-[1rem] text-ink">{skill.value}</p>

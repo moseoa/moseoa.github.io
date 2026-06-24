@@ -116,14 +116,14 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-dashed border-border pt-8 flex flex-col md:flex-row justify-between items-center text-xs opacity-60 uppercase tracking-wider gap-4">
-          <div className="hidden lowercase md:block">
+        <div className="border-t border-dashed border-border pt-8 flex flex-col md:flex-row justify-between items-center text-xs opacity-60 uppercase tracking-wider gap-4 text-center md:text-left">
+          <div className="lowercase">
             seoa_mo_portfolio
           </div>
-          <div className="hidden lowercase md:block">
+          <div className="lowercase">
             {`[ end_of_page ]`}
           </div>
-          <div className="hidden lowercase md:block">
+          <div className="lowercase">
             built_with_react
           </div>
         </div>

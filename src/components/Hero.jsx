@@ -22,7 +22,7 @@ function LetterDisplay({ word }) {
       key={i}
       className={`letter group relative inline-flex items-center justify-center
       font-playfair font-bold tracking-tighter
-      text-[clamp(6rem,14vw,14rem)]
+      text-[clamp(3.5rem,14vw,14rem)]
       cursor-default select-none
       `}
       data-speed={rand(0.8, 1.03)}
@@ -115,7 +115,7 @@ const Hero = () => {
   return (
     <section 
       ref={box}
-      className="min-h-screen relative flex flex-col items-center justify-center pt-32 pb-24 overflow-visible bg-cream"
+      className="min-h-screen relative flex flex-col items-center justify-center pt-32 pb-24 overflow-x-hidden bg-cream"
     >
       {/* Background ASCII Art */}
       <div className="absolute top-0 left-0 w-[150%] h-full pointer-events-none select-none opacity-[0.05] overflow-hidden flex flex-wrap content-start z-0">
@@ -145,7 +145,7 @@ const Hero = () => {
           </div>
 
           {/* PEARL_ASCII - Aligned to bottom right of text */}
-          <div className="pearl-wrapper absolute bottom-[-0.05em] right-[-1.2em] md:right-[-1.5em] z-0 select-none hidden sm:block">
+          <div className="pearl-wrapper absolute bottom-[-0.05em] right-0 sm:right-[-1.2em] md:right-[-1.5em] z-0 select-none block">
             <div className="opacity-15 hover:opacity-100 transition-all duration-500 group cursor-crosshair">
               <pre className="text-[0.08em] md:text-[0.09em] leading-[0.8] font-mono text-muted group-hover:text-ink transition-all duration-300">
                 {PEARL_ASCII}

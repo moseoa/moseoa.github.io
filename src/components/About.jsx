@@ -35,7 +35,7 @@ const About = () => {
             Last summer I interned at <strong className="text-ink font-medium">KPMG Canada</strong> as a Management Consultant in Operations, under Healthcare Solutions, where I worked on a regional healthcare project to support the structural reform to improve the quality of care for patients. I also helped develop risk and mitigations for a provincial healthcare client. 
           </p>
           <p>
-            I am fluent in <strong className="text-ink font-medium">Mandarin and Korean</strong>, and comfortable across technical tooling from Python and SQL to Adobe Creative Suite.
+            I am fluent in <strong className="text-ink font-medium">Mandarin and Korean</strong>, and comfortable with technical tools from Python and SQL to Adobe Creative Suite.
           </p>
         </div>
       </div>

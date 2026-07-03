@@ -160,7 +160,7 @@ const Hero = () => {
           transition={{ duration: 0.9, delay: 1 }}
           className="text-[1.05rem] leading-[1.9] text-muted max-w-[520px]"
         >
-          Third-year Political Science & Economics student at McMaster University. I build at the intersection of coordination, digital delivery, and creative execution.
+          Fourth-year Political Science, Specialization in Public Law and Judicial Studies & Minor in Economics student at McMaster University. I am passionate about the intersection of technology, healthcare, and law.
         </motion.p>
 
         <div className="flex gap-16 items-center justify-center flex-wrap opacity-0 animate-[fadeUp_0.9s_ease_1.05s_forwards]">

@@ -7,7 +7,7 @@ const Contact = () => {
         Let's work<br /><em className="italic text-rust">together</em>
       </h2>
       <p className="text-[1.1rem] text-muted mb-12 max-w-2xl mx-auto leading-[1.7]">
-        Open to internship opportunities in project delivery, operations, and digital strategy.
+        Open to opportunities in project delivery, operations, and digital strategy.
       </p>
       <a 
         href="mailto:mochristina4@gmail.com" 

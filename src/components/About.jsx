@@ -3,7 +3,7 @@ import { PROFILE_BG_ASCII } from '../assets/data/ascii';
 
 const About = () => {
   const skills = [
-    { name: 'Languages', value: 'Mandarin · Korean · French' },
+    { name: 'Languages', value: 'Mandarin · Korean · English' },
     { name: 'Design', value: 'Adobe Creative Suite · SwiftUI' },
     { name: 'Technical', value: 'Python · SQL · R · Jira' },
     { name: 'Office', value: 'Excel · PowerPoint · SAP' },

@@ -35,6 +35,9 @@ const About = () => {
             Last summer I interned at <strong className="text-ink font-medium">KPMG Canada</strong> as a Management Consultant in Operations, under Healthcare Solutions, where I worked on a regional healthcare project to support the structural reform to improve the quality of care for patients. I also helped develop risk and mitigations for a provincial healthcare client. 
           </p>
           <p>
+            I am currently interning at the house of commons under Member of Parliament Aslam Rana <strong className="text-ink font-medium">, as a legislative & constituency assistant intern</strong>, responsible for legislative affairs, such as, researching & drafting committee questions, and completing casework at the grassroots level.
+          </p>
+          <p>
             I am fluent in <strong className="text-ink font-medium">Mandarin and Korean</strong>, and comfortable with technical tools from Python and SQL to Adobe Creative Suite.
           </p>
         </div>

@@ -59,7 +59,7 @@ const Footer = () => {
             <div className="font-crimson text-sm italic text-muted mb-6 px-1 border-l-2 border-ink">
             </div>
             <h2 className="text-2xl font-bold uppercase tracking-tight mb-2">Seoa Mo</h2>
-            <p className="text-sm text-muted mb-1">Political Science & Economics</p>
+            <p className="text-sm text-muted mb-1">Political Science, specialization in Public Law and Judicial Studies & Economics</p>
             <p className="text-sm text-muted">McMaster University</p>
           </div>
 

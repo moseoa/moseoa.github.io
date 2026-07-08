@@ -10,7 +10,7 @@ const Contact = () => {
         Open to opportunities in project delivery, operations, and digital strategy.
       </p>
       <a 
-        href="mailto:mochristina4@gmail.com" 
+        href="mailto:inquiriesseoamo@gmail.com" 
         className="font-playfair text-[1.5rem] text-ink no-underline border-b border-ink pb-1 transition-colors hover:text-rust hover:border-rust inline-block"
       >
         Get in touch

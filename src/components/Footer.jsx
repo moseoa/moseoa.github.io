@@ -89,10 +89,10 @@ const Footer = () => {
             <div className="font-crimson text-sm italic text-muted mb-6 px-1 border-l-2 border-ink">
             </div>
             <a
-              href="mailto:mochristina4@gmail.com"
+              href="mailto:inquiriesseoamo@gmail.com"
               className="block text-lg text-rust hover:underline decoration-1 underline-offset-4 mb-6 hover:translate-x-1 transition-transform duration-200"
             >
-              mochristina4@gmail.com ↗
+              inquiriesseoamo@gmail.com ↗
             </a>
 
             <div className="flex gap-6">

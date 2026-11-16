@@ -107,8 +107,8 @@ const Hero = () => {
   }, []);
 
   const stats = [
-    { number: '1.2k', label: 'RedNote followers grown from zero' },
-    { number: '345%', label: 'Engagement growth' },
+    { number: '2025', label: 'KPMG Canada Intern' },
+    { number: '2025', label: 'Federal Government Intern' },
     { number: 'DeltaHacks XII', label: 'Swift Student Challenge Winner', isSmall: true },
   ];
 

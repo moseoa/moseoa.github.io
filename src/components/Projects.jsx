@@ -15,6 +15,17 @@ const projects = [
   },
   {
     id: 2,
+    title: 'TeX-it',
+    type: 'Hackathon / Product',
+    subtitle: 'HackDaysinthe6ix · 2026',
+    desc: 'An AI-powered LaTeX IDE where users can write documents using voice, files, or images of handwritten content. Powered by Deepgram speech-to-text and Gemini, it turns natural input into clean LaTeX. — driving ideation to a deployable build in under 8 hours.',
+    tags: ['deepgram', 'electron', 'gemini', 'go', 'react.js', 'typescript'],
+    link: 'https://devpost.com/software/ltexch',
+    visualClass: 'texit-bg',
+    isTexit: true
+  },
+  {
+    id: 2,
     title: 'RedNote @ McMaster',
     type: 'Content Strategy / Visual Design',
     subtitle: 'Communications Assistant · McMaster Student Recruitment · 2025–Present',

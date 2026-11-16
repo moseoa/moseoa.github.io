@@ -108,7 +108,7 @@ const Hero = () => {
 
   const stats = [
     { number: '2025', label: 'KPMG Canada Intern' },
-    { number: '2025', label: 'Federal Government Intern' },
+    { number: '2026', label: 'Federal Government Intern' },
     { number: 'DeltaHacks XII', label: 'Swift Student Challenge Winner', isSmall: true },
   ];
 

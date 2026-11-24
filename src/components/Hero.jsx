@@ -29,17 +29,6 @@ const Hero = () => {
           invalidateOnRefresh: true,
         },
       });
-
-      gsap.to('.pearl-wrapper', {
-        opacity: 0,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: box.current,
-          start: 'top top',
-          end: '25% top',
-          scrub: true
-        }
-      });
     }, box);
 
     return () => ctx.revert();
@@ -87,15 +76,6 @@ const Hero = () => {
 
         <div className="relative leading-none flex items-center justify-center">
           <SketchbookTitle className="relative z-10" />
-
-          {/* PEARL_ASCII - Aligned to bottom right of text */}
-          <div className="pearl-wrapper absolute bottom-[-0.05em] right-0 sm:right-[-1.2em] md:right-[-1.5em] z-0 select-none block">
-            <div className="opacity-15 hover:opacity-100 transition-all duration-500 group cursor-crosshair">
-              <pre className="text-[0.08em] md:text-[0.09em] leading-[0.8] font-mono text-muted group-hover:text-ink transition-all duration-300">
-                {PEARL_ASCII}
-              </pre>
-            </div>
-          </div>
         </div>
 
         <motion.p
@@ -104,7 +84,7 @@ const Hero = () => {
           transition={{ duration: 0.9, delay: 1 }}
           className="text-[1.05rem] leading-[1.9] text-muted max-w-[520px]"
         >
-          Hi there! I am Seoa, a multi-disciplinary Political Science (public law & judicial studies specialization) student passionate about public policy, technology, and deisgn.
+          Hi there! I am Seoa, a multi-disciplinary Political Science (public law & judicial studies specialization) student passionate about public policy, technology, and design.
         </motion.p>
 
         <div className="flex gap-16 items-center justify-center flex-wrap opacity-0 animate-[fadeUp_0.9s_ease_1.05s_forwards]">

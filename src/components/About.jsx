@@ -117,16 +117,16 @@ const About = () => {
             <p>
               hey! i&apos;m seoa, a{' '}
               <strong className="font-semibold text-[#1E2A5E]">
-                fourth-year political science student @ mcmaster university
+                multi-disciplinary fourth-year political science student @ mcmaster university
               </strong>{' '}
-              specializing in public law &amp; judicial studies. thanks for stopping by my sketchbook!
+              specializing in public law &amp; judicial studies passionate about public policy, technology, and design. Thanks for stopping by my sketchbook!
             </p>
 
             <div className="pt-1">
               <p className="italic text-[#5B6FA8] mb-2">add-ons:</p>
               <ul className="list-none space-y-1.5 font-medium text-[#1E2A5E]">
                 <li>✦ minor in economics</li>
-                <li>✦ former kpmg canada consulting intern · currently @ the house of commons</li>
+                <li>✦ kpmg canada 2025 · federal government 2026 </li>
                 <li>✦ fluent in mandarin, korean &amp; english</li>
               </ul>
             </div>

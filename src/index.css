@@ -34,4 +34,23 @@
   .text-stroke-rust {
     -webkit-text-stroke: 2px var(--rust);
   }
+  .animate-banner-loop {
+    animation: bannerScroll 85s linear infinite;
+    will-change: transform;
+  }
+}
+
+@keyframes bannerScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-banner-loop {
+    animation: none;
+  }
 }

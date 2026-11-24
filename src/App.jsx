@@ -1,6 +1,7 @@
 import React from 'react';
 import SketchbookMenu from './components/SketchbookMenu';
 import Hero from './components/Hero';
+import PhotoBanner from './components/PhotoBanner';
 import Projects from './components/Projects';
 import About from './components/About';
 import Contact from './components/Contact';
@@ -12,6 +13,7 @@ function App() {
       <SketchbookMenu />
       <main>
         <Hero />
+        <PhotoBanner />
         <Projects />
         <About />
         <Contact />

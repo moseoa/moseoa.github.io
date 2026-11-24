@@ -66,22 +66,22 @@ export const BANNER_CAPTIONS = {
     meta: '2026 · Montreal, QC',
     description: 'Community sketchbook project!',
   },
-  'banner-13.jpg': {
+  'banner-14.jpg': {
     title: 'Coucouching Canadian International Conference',
     meta: '2026 · Toronto, ON',
     description: 'Meeting the Honourable Bob Rae for the second time! ',
   },
-  'banner-14.jpg': {
+  'banner-15.jpg': {
     title: 'Post-Midterm Election',
     meta: '2026 · Michigan, USA',
     description: 'Supporting the candidates I believe in.',
   },
-  'banner-15.jpg': {
+  'banner-16.jpg': {
     title: 'BC trip',
     meta: '2026 · Vancouver, BC',
     description: 'Hiking in Vancouver was so much fun!',
   },
-  'banner-16.jpg': {
+  'banner-17.jpg': {
     title: 'BC trip',
     meta: '2026 · Victoria, BC',
     description: 'Mountain views!',

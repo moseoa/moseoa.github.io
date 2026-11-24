@@ -78,22 +78,22 @@ export const BANNER_CAPTIONS = {
   },
   'banner-16.jpg': {
     title: 'BC trip',
-    meta: '2026 · Vancouver, BC',
+    meta: '2025 · Vancouver, BC',
     description: 'Hiking in Vancouver was so much fun!',
   },
   'banner-17.jpg': {
     title: 'BC trip',
-    meta: '2026 · Victoria, BC',
+    meta: '2025 · Victoria, BC',
     description: 'Mountain views!',
   },
   'banner-18.jpg': {
     title: 'BC trip',
-    meta: '2026 · Victoria, BC',
+    meta: '2025 · Victoria, BC',
     description: 'My solomons are so damaged...',
   },
   'banner-19.jpg': {
     title: 'BC trip',
-    meta: '2026 · Victoria, BC',
+    meta: '2025 · Victoria, BC',
     description: 'Camping!',
   },
   'banner-20.jpg': {
@@ -173,7 +173,7 @@ export const BANNER_CAPTIONS = {
   },
   'banner-35.jpg': {
     title: 'KPMG Volunteering Event',
-    meta: '2026 · Toronto, ON',
+    meta: '2025 · Toronto, ON',
     description: 'Volunteering with colleagues at a dog shelter',
   },
   'banner-36.jpg': {
@@ -183,7 +183,7 @@ export const BANNER_CAPTIONS = {
   },
   'banner-37.jpg': {
     title: 'KPMG',
-    meta: '2026 · Toronto, ON',
+    meta: '2025 · Toronto, ON',
     description: 'My awesome colleagues!',
   },
 };

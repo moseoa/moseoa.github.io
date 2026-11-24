@@ -58,8 +58,9 @@ const Hero = () => {
 
   return (
     <section 
+      id="home"
       ref={box}
-      className="min-h-screen relative flex flex-col items-center justify-center pt-32 pb-24 overflow-x-hidden bg-cream"
+      className="min-h-screen relative flex flex-col items-center justify-center pt-20 md:pt-24 pb-24 overflow-x-hidden bg-cream"
     >
       {/* Background ASCII Art */}
       <div className="absolute top-0 left-0 w-[150%] h-full pointer-events-none select-none opacity-[0.05] overflow-hidden flex flex-wrap content-start z-0">

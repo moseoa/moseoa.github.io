@@ -30,8 +30,14 @@ function App() {
         ))}
       </div>
 
-      <SketchbookMenu />
-      <main className="relative">
+      {introDone && <SketchbookMenu />}
+      <main
+        className={
+          introDone
+            ? 'relative opacity-100 visible transition-opacity duration-300'
+            : 'relative opacity-0 invisible pointer-events-none'
+        }
+      >
         <Hero readyToAnimate={introDone} />
         <PhotoBanner />
         <Projects />

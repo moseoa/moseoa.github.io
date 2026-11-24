@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import loaderSheetSrc from '../assets/images/loader-delta.png';
+import loaderSheetSrc from '../assets/images/loader-delta.webp';
 
 const FRAME_W = 760;
 const FRAME_H = 218;
 const COLS = 4;
 const TOTAL_FRAMES = 32;
-const FRAME_INTERVAL_MS = 56; // ~18 fps (~1.8s crisp loading animation)
-const HOLD_AFTER_MS = 320;
+const FRAME_INTERVAL_MS = 40; // ~25 fps (~1.28s snappy handwriting animation)
+const HOLD_AFTER_MS = 180;
 
 const LoadingScreen = ({ onComplete }) => {
   const canvasRef = useRef(null);
@@ -30,11 +30,12 @@ const LoadingScreen = ({ onComplete }) => {
       return () => window.clearTimeout(timerRef.current);
     }
 
-    // Safety timeout so loading screen can never get stuck
-    const safetyTimeout = window.setTimeout(finish, 4200);
+    // Safety timeout so loading screen can never get stuck on slow networks
+    const safetyTimeout = window.setTimeout(finish, 2800);
     let cancelled = false;
 
     const img = new Image();
+    img.fetchPriority = 'high';
     img.decoding = 'async';
     img.onload = () => {
       if (cancelled) return;
@@ -108,8 +109,8 @@ const LoadingScreen = ({ onComplete }) => {
           aria-label="Loading Seoa's Sketchbook"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.45, ease: 'easeInOut' }}
-          className="fixed -top-28 -bottom-28 -left-6 -right-6 z-[300] bg-cream flex flex-col items-center justify-center px-6 select-none"
+          transition={{ duration: 0.32, ease: 'easeInOut' }}
+          className="fixed -top-36 -bottom-36 -left-6 -right-6 z-[300] bg-cream flex flex-col items-center justify-center px-6 select-none"
         >
           <motion.div
             initial={{ opacity: 0.9, scale: 0.98 }}

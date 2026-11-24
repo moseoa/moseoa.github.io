@@ -221,7 +221,7 @@ const PhotoBanner = () => {
               <img
                 src={photo.src}
                 alt={isDuplicate ? '' : photo.alt}
-                loading={idx < 8 && !isDuplicate ? 'eager' : 'lazy'}
+                loading={idx < 5 && !isDuplicate ? 'eager' : 'lazy'}
                 decoding="async"
                 draggable="false"
                 className="h-[190px] sm:h-[225px] md:h-[255px] w-auto max-w-[340px] object-cover block select-none transition-transform duration-500 group-hover/card:scale-[1.03]"

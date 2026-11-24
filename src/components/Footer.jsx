@@ -108,10 +108,10 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-dashed border-border pt-8 flex flex-col md:flex-row justify-between items-center text-xs opacity-60 uppercase tracking-wider gap-4 text-center md:text-left">
           <div className="lowercase">
-            seoa_mo_portfolio
+            © 2026 Seoa Mo
           </div>
           <div className="lowercase">
-            {`[ hand-drawn sketches and made with love <3 ]`}
+            {`hand-drawn sketches and made with love <3`}
           </div>
           <div className="lowercase">
             built_with_react

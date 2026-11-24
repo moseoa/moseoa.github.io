@@ -59,7 +59,7 @@ const Footer = () => {
             <div className="font-crimson text-sm italic text-muted mb-6 px-1 border-l-2 border-ink">
             </div>
             <h2 className="text-2xl font-bold uppercase tracking-tight mb-2">Seoa Mo</h2>
-            <p className="text-sm text-muted mb-1">Political Science & Economics</p>
+            <p className="text-sm text-muted mb-1">Political Science, specialization in Public Law and Judicial Studies & Economics</p>
             <p className="text-sm text-muted">McMaster University</p>
           </div>
 
@@ -89,16 +89,16 @@ const Footer = () => {
             <div className="font-crimson text-sm italic text-muted mb-6 px-1 border-l-2 border-ink">
             </div>
             <a
-              href="mailto:mochristina4@gmail.com"
+              href="mailto:inquiriesseoamo@gmail.com"
               className="block text-lg text-rust hover:underline decoration-1 underline-offset-4 mb-6 hover:translate-x-1 transition-transform duration-200"
             >
-              mochristina4@gmail.com ↗
+              inquiriesseoamo@gmail.com ↗
             </a>
 
             <div className="flex gap-6">
               {[
                 { name: 'github', link: 'https://github.com/moseoa' },
-                { name: 'linkedin', link: 'https://linkedin.com/in/seoamo' },
+                { name: 'linkedin', link: 'https://ca.linkedin.com/in/seoamo' },
               ].map((social) => (
                 <a
                   key={social.name}
@@ -116,14 +116,14 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-dashed border-border pt-8 flex flex-col md:flex-row justify-between items-center text-xs opacity-60 uppercase tracking-wider gap-4">
-          <div className="hidden lowercase md:block">
+        <div className="border-t border-dashed border-border pt-8 flex flex-col md:flex-row justify-between items-center text-xs opacity-60 uppercase tracking-wider gap-4 text-center md:text-left">
+          <div className="lowercase">
             seoa_mo_portfolio
           </div>
-          <div className="hidden lowercase md:block">
+          <div className="lowercase">
             {`[ end_of_page ]`}
           </div>
-          <div className="hidden lowercase md:block">
+          <div className="lowercase">
             built_with_react
           </div>
         </div>

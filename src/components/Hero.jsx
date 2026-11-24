@@ -51,15 +51,15 @@ const Hero = () => {
   }, []);
 
   const stats = [
-    { number: '1.2k', label: 'RedNote followers grown from zero' },
-    { number: '345%', label: 'Engagement growth' },
+    { number: '2025', label: 'KPMG Canada Intern' },
+    { number: '2026', label: 'Federal Government Intern' },
     { number: 'DeltaHacks XII', label: 'Swift Student Challenge Winner', isSmall: true },
   ];
 
   return (
     <section 
       ref={box}
-      className="min-h-screen relative flex flex-col items-center justify-center pt-32 pb-24 overflow-visible bg-cream"
+      className="min-h-screen relative flex flex-col items-center justify-center pt-32 pb-24 overflow-x-hidden bg-cream"
     >
       {/* Background ASCII Art */}
       <div className="absolute top-0 left-0 w-[150%] h-full pointer-events-none select-none opacity-[0.05] overflow-hidden flex flex-wrap content-start z-0">
@@ -84,7 +84,7 @@ const Hero = () => {
           <SketchbookTitle className="relative z-10" />
 
           {/* PEARL_ASCII - Aligned to bottom right of text */}
-          <div className="pearl-wrapper absolute bottom-[-0.05em] right-[-1.2em] md:right-[-1.5em] z-0 select-none hidden sm:block">
+          <div className="pearl-wrapper absolute bottom-[-0.05em] right-0 sm:right-[-1.2em] md:right-[-1.5em] z-0 select-none block">
             <div className="opacity-15 hover:opacity-100 transition-all duration-500 group cursor-crosshair">
               <pre className="text-[0.08em] md:text-[0.09em] leading-[0.8] font-mono text-muted group-hover:text-ink transition-all duration-300">
                 {PEARL_ASCII}
@@ -99,7 +99,7 @@ const Hero = () => {
           transition={{ duration: 0.9, delay: 1 }}
           className="text-[1.05rem] leading-[1.9] text-muted max-w-[520px]"
         >
-          Third-year Political Science & Economics student at McMaster University. I build at the intersection of coordination, digital delivery, and creative execution.
+          I am a Fourth-Year Political Science Student specializing in Public Law & Judicial Studies at McMaster University. I am passionate about Public Policy and how judicial systems can impact rights-related issues. I am currently on a team of 3 academics and professionals in the United Nations-Canada called I3 Alliance, where we are researching digital infrastructures that could decrease human trafficking. A lot of my work is rooted in my passion for technology and the use cases that exist with it, combined with my interest in Access to Justice and Access to Care. 
         </motion.p>
 
         <div className="flex gap-16 items-center justify-center flex-wrap opacity-0 animate-[fadeUp_0.9s_ease_1.05s_forwards]">

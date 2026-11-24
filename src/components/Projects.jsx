@@ -3,7 +3,7 @@ import { PROJECTS_BG_ASCII } from '../assets/data/ascii';
 
 const projects = [
   {
-    id: 3, 
+    id: 1,
     title: 'Does a Threshold-Based Diagnostic Consistency Framework for Women\'s Health Exist Within Family Physician Training in Canada?',
     type: 'Research / Policy',
     subtitle: 'Scoping Review',
@@ -14,7 +14,7 @@ const projects = [
     isHealthPolicy: true
   },
   {
-    id: 1,
+    id: 2,
     title: 'LavaLock',
     type: 'Hackathon / Product',
     subtitle: 'Swift Student Challenge Winner · DeltaHacks XII · 2026',
@@ -25,13 +25,24 @@ const projects = [
     isLava: true
   },
   {
-    id: 2,
+    id: 3,
+    title: 'TeX-it',
+    type: 'Hackathon / Product',
+    subtitle: 'HackDaysinthe6ix · 2026',
+    desc: 'An AI-powered LaTeX IDE where users can write documents using voice, files, or images of handwritten content. Powered by Deepgram speech-to-text and Gemini, it turns natural input into clean LaTeX. — driving ideation to a deployable build in under 8 hours.',
+    tags: ['deepgram', 'electron', 'gemini', 'go', 'react.js', 'typescript'],
+    link: 'https://devpost.com/software/ltexch',
+    visualClass: 'texit-bg',
+    isTexit: true
+  },
+  {
+    id: 4,
     title: 'RedNote @ McMaster',
     type: 'Content Strategy / Visual Design',
     subtitle: 'Communications Assistant · McMaster Student Recruitment · 2025–Present',
     desc: "Launched and scaled McMaster's first Chinese social media presence on RedNote (小红书) from zero. I taught myself Adobe Illustrator in one month and shipped real client-facing work — city-specific event posters.",
     tags: ['Adobe Creative Suite', 'Adobe Illustrator', 'Adobe Premiere Pro', 'Content Strategy', 'Data Analytics', 'Mandarin'],
-    link: 'https://www.xiaohongshu.com/user/profile/67fa6a84000000000e011528?xsec_token=YBhjfkIRQbuD8hnDKpKfnuKaPN-JEFwJ4LoKeEuPYsHOo=&xsec_source=app_share&xhsshare=CopyLink&shareRedId=ODxGQ0Q9SU02NzUyOTgwNjdHOTk0NTw8&apptime=1771889491&share_id=cab016e564364077a6b3869620cc9782',
+    link: 'https://www.canva.com/design/DAHCMni_xlo/wB3IpNEtiJJmz8yHET0ooQ/edit?utm_content=DAHCMni_xlo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton',
     stats: '1.2k followers · 345% engagement growth · 1 month to ship',
     visualClass: 'rednote-bg',
     isRedNote: true
@@ -59,7 +70,7 @@ const ProjectCard = ({ project }) => {
       ref={cardRef}
       className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-border mb-12 opacity-0 translate-y-[30px] transition-all duration-700 ease-out even:md:flex-row-reverse"
     >
-      <div className={`min-h-[480px] flex items-center justify-center overflow-hidden relative ${project.visualClass}`}>
+      <div className={`min-h-[300px] md:min-h-[480px] flex items-center justify-center overflow-hidden relative ${project.visualClass}`}>
         {project.isLava && (
           <>
             <div className="absolute rounded-full blur-[40px] animate-[float_6s_ease-in-out_infinite] w-[180px] h-[220px] bg-[radial-gradient(circle,#C4440A,#7A1A00)] top-[15%] left-[25%]" />
@@ -91,7 +102,7 @@ const ProjectCard = ({ project }) => {
         <div className={`z-10 font-playfair text-2xl drop-shadow-lg px-8 text-center ${project.isRedNote ? 'text-rust' : 'text-white'}`}>{project.title}</div>
       </div>
 
-      <div className="p-14 flex flex-col justify-center bg-cream">
+      <div className="p-8 md:p-14 flex flex-col justify-center bg-cream">
         <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-rust mb-6">
           {project.id.toString().padStart(2, '0')} — {project.type}
         </p>
@@ -129,7 +140,7 @@ const ProjectCard = ({ project }) => {
 
 const Projects = () => {
   return (
-    <section id="projects" className="px-16 py-32 border-t border-border relative overflow-hidden bg-cream">
+    <section id="projects" className="px-6 md:px-16 py-20 md:py-32 border-t border-border relative overflow-hidden bg-cream">
       {/* Background ASCII Art */}
       <div className="absolute top-0 left-0 w-[150%] h-full pointer-events-none select-none opacity-[0.05] overflow-hidden flex flex-wrap content-start z-0">
         {Array.from({ length: 100 }).map((_, i) => (

@@ -21,7 +21,7 @@ const About = () => {
   }, [isCvOpen]);
 
   const skills = [
-    { name: 'Languages', value: 'Mandarin · Korean · French' },
+    { name: 'Languages', value: 'Mandarin · Korean · English' },
     { name: 'Design', value: 'Adobe Creative Suite · SwiftUI' },
     { name: 'Technical', value: 'Python · SQL · R · Jira' },
     { name: 'Office', value: 'Excel · PowerPoint · SAP' },
@@ -30,7 +30,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="px-16 py-32 border-t border-border grid grid-cols-1 lg:grid-cols-2 gap-24 items-start relative overflow-hidden bg-cream">
+    <section id="about" className="px-6 md:px-16 py-20 md:py-32 border-t border-border grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start relative overflow-hidden bg-cream">
       {/* Background ASCII Art */}
       <div className="absolute top-0 left-0 w-[150%] h-full pointer-events-none select-none opacity-[0.05] overflow-hidden flex flex-wrap content-start z-0">
         {Array.from({ length: 100 }).map((_, i) => (
@@ -47,13 +47,16 @@ const About = () => {
         </div>
         <div className="text-[1rem] leading-[1.9] text-muted space-y-6">
           <p>
-            I am a third-year <strong className="text-ink font-medium">Political Science and Economics</strong> student at McMaster University (graduating 2027). My academic background trains me to understand how institutions, incentives, and people interact.
+            I am a fourth-year <strong className="text-ink font-medium">Political Science, Specialization in Public Law and Judicial Studies and Minor in Economics</strong> student at McMaster University (graduating 2027). My academic background trains me to understand how institutions, incentives, and people interact.
           </p>
           <p>
-            Last summer I interned at <strong className="text-ink font-medium">KPMG Canada</strong> as a Management Consultant in Operations, where I coordinated cross-functional workstreams and delivered executive-ready recommendations.
+            Last summer I interned at <strong className="text-ink font-medium">KPMG Canada</strong> as a Management Consultant in Operations, under Healthcare Solutions, where I worked on a regional healthcare project to support the structural reform to improve the quality of care for patients. I also helped develop risk and mitigations for a provincial healthcare client. 
           </p>
           <p>
-            I am fluent in <strong className="text-ink font-medium">Mandarin and Korean</strong>, and comfortable across technical tooling from Python and SQL to Adobe Creative Suite.
+            I am currently interning at the house of commons under Member of Parliament Aslam Rana <strong className="text-ink font-medium">, as a legislative & constituency assistant intern</strong>, responsible for legislative affairs, such as, researching & drafting committee questions, and completing casework at the grassroots level.
+          </p>
+          <p>
+            I am fluent in <strong className="text-ink font-medium">Mandarin and Korean</strong>, and comfortable with technical tools from Python and SQL to Adobe Creative Suite.
           </p>
         </div>
 
@@ -88,7 +91,7 @@ const About = () => {
           {skills.map((skill, index) => (
             <div 
               key={index} 
-              className={`p-6 border-b border-border ${index % 2 === 0 ? 'border-r sm:border-r' : 'sm:border-r-0'}`}
+              className={`p-6 border-b border-border ${index % 2 === 0 ? 'sm:border-r' : ''}`}
             >
               <p className="font-mono text-[0.7rem] uppercase tracking-[0.1em] text-muted mb-2">{skill.name}</p>
               <p className="font-playfair text-[1rem] text-ink">{skill.value}</p>

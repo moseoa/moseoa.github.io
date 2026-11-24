@@ -27,9 +27,9 @@ const About = () => {
   return (
     <section
       id="about"
-      className="px-6 md:px-16 py-14 md:py-20 relative overflow-hidden"
+      className="px-6 md:px-16 py-10 sm:py-14 md:py-20 relative overflow-hidden"
     >
-      <div className="relative z-10 max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12 md:gap-16 lg:gap-20">
+      <div className="relative z-10 max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-center gap-8 sm:gap-12 md:gap-16 lg:gap-20">
         {/* Left: Circular framed headshot in blue, navy & white */}
         <div className="relative shrink-0">
           {/* Subtle hand-drawn star accent */}
@@ -149,7 +149,7 @@ const About = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 8 }}
               transition={{ type: 'spring', stiffness: 380, damping: 28 }}
-              className="relative w-full max-w-4xl h-[85vh] bg-white rounded-2xl border-2 border-[#4F66BA] flex flex-col shadow-2xl overflow-hidden"
+              className="relative w-full max-w-4xl h-[86dvh] bg-white rounded-2xl border-2 border-[#4F66BA] flex flex-col shadow-2xl overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between px-6 py-4 border-b border-[#DCEEFF] bg-[#F4F8FD]">

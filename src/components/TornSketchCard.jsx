@@ -152,39 +152,50 @@ const TornSketchCard = ({
     ctx.restore();
   }, []);
 
+  const markAtPoint = useCallback(
+    (clientX, clientY, isStart = false) => {
+      if (compact) return;
+      isHoveringRef.current = true;
+      syncCanvasSize();
+      const rect = canvasRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      if (isStart || !lastPosRef.current) {
+        drawGraphiteSegment(x - 1, y + 0.5, x + 1, y - 0.5);
+      } else {
+        drawGraphiteSegment(lastPosRef.current.x, lastPosRef.current.y, x, y);
+      }
+      lastPosRef.current = { x, y };
+      lastDrawTimeRef.current = performance.now();
+      ensureFadeLoop();
+    },
+    [compact, drawGraphiteSegment, ensureFadeLoop, syncCanvasSize]
+  );
+
   const handlePointerEnter = (e) => {
-    if (compact) return;
-    isHoveringRef.current = true;
-    syncCanvasSize();
-    const rect = canvasRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    lastPosRef.current = { x, y };
-    lastDrawTimeRef.current = performance.now();
-    // Initial pencil touch-down mark
-    drawGraphiteSegment(x - 1, y + 0.5, x + 1, y - 0.5);
-    ensureFadeLoop();
+    if (e.pointerType === 'touch') return;
+    markAtPoint(e.clientX, e.clientY, true);
   };
 
   const handlePointerMove = (e) => {
-    if (compact) return;
-    isHoveringRef.current = true;
-    syncCanvasSize();
-    const rect = canvasRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const prev = lastPosRef.current || { x, y };
-    drawGraphiteSegment(prev.x, prev.y, x, y);
-    lastPosRef.current = { x, y };
-    lastDrawTimeRef.current = performance.now();
-    ensureFadeLoop();
+    if (e.pointerType === 'touch') return;
+    markAtPoint(e.clientX, e.clientY, false);
   };
 
   const handlePointerLeave = () => {
     isHoveringRef.current = false;
     lastPosRef.current = null;
+  };
+
+  const handleTouchStart = (e) => {
+    const touch = e.touches?.[0];
+    if (touch) markAtPoint(touch.clientX, touch.clientY, true);
+  };
+
+  const handleTouchMove = (e) => {
+    const touch = e.touches?.[0];
+    if (touch) markAtPoint(touch.clientX, touch.clientY, false);
   };
 
   if (compact) {
@@ -225,6 +236,11 @@ const TornSketchCard = ({
         onPointerEnter={handlePointerEnter}
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
+        onPointerCancel={handlePointerLeave}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handlePointerLeave}
+        onTouchCancel={handlePointerLeave}
         whileHover={{ scale: 1.04, y: -7, rotate: 0 }}
         whileTap={{ scale: 0.98 }}
         transition={{ type: 'spring', stiffness: 340, damping: 22 }}

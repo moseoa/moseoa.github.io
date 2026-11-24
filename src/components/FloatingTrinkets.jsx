@@ -16,8 +16,8 @@ const TRINKETS = [
     alt: 'Hand-drawn Cinnamoroll trinket',
     message: "i'm so glad you're here :D",
     accent: '#8DC6F2',
-    positionClass: 'top-[7%] left-[3%] sm:top-[9%] sm:left-[6%] lg:left-[10%]',
-    sizeClass: 'w-[102px] sm:w-[136px] md:w-[162px]',
+    positionClass: 'top-[4%] left-[3%] sm:top-[9%] sm:left-[6%] lg:left-[10%]',
+    sizeClass: 'w-[84px] sm:w-[136px] md:w-[162px]',
     bubbleAlignClass: 'top-full left-0 mt-2',
     bubbleTilt: 2.5,
     baseRotate: -4,
@@ -33,8 +33,8 @@ const TRINKETS = [
     alt: 'Hand-drawn blue star trinket',
     message: 'welcome to my sketchbook ✦',
     accent: '#F4B936',
-    positionClass: 'top-[14%] right-[6%] sm:top-[16%] sm:right-[11%] lg:right-[16%]',
-    sizeClass: 'w-[50px] sm:w-[64px] md:w-[74px]',
+    positionClass: 'top-[15%] right-[5%] sm:top-[16%] sm:right-[11%] lg:right-[16%]',
+    sizeClass: 'w-[42px] sm:w-[64px] md:w-[74px]',
     bubbleAlignClass: 'top-full right-0 mt-2',
     bubbleTilt: -2.5,
     baseRotate: 6,
@@ -50,8 +50,8 @@ const TRINKETS = [
     alt: 'Hand-drawn bunny trinket',
     message: 'scroll down to explore!',
     accent: '#8B88C8',
-    positionClass: 'bottom-[17%] left-[3%] sm:bottom-[19%] sm:left-[7%] lg:left-[11%]',
-    sizeClass: 'w-[66px] sm:w-[86px] md:w-[98px]',
+    positionClass: 'bottom-[5%] left-[3%] sm:bottom-[19%] sm:left-[7%] lg:left-[11%]',
+    sizeClass: 'w-[56px] sm:w-[86px] md:w-[98px]',
     bubbleAlignClass: 'bottom-full left-0 mb-2',
     bubbleTilt: -2,
     baseRotate: -5,
@@ -67,8 +67,8 @@ const TRINKETS = [
     alt: 'Hand-drawn ribbon bow trinket',
     message: 'made with love & curiosity',
     accent: '#8DD3F4',
-    positionClass: 'bottom-[20%] right-[4%] sm:bottom-[23%] sm:right-[8%] lg:right-[11%]',
-    sizeClass: 'w-[78px] sm:w-[102px] md:w-[118px]',
+    positionClass: 'bottom-[7%] right-[4%] sm:bottom-[23%] sm:right-[8%] lg:right-[11%]',
+    sizeClass: 'w-[66px] sm:w-[102px] md:w-[118px]',
     bubbleAlignClass: 'bottom-full right-0 mb-2',
     bubbleTilt: 2.5,
     baseRotate: 5,
@@ -149,9 +149,12 @@ const FloatingTrinket = ({ trinket }) => {
       >
         <motion.button
           type="button"
-          onMouseEnter={() => setIsActive(true)}
-          onMouseLeave={() => setIsActive(false)}
-          onFocus={() => setIsActive(true)}
+          onPointerEnter={(e) => {
+            if (e.pointerType === 'mouse') setIsActive(true);
+          }}
+          onPointerLeave={(e) => {
+            if (e.pointerType === 'mouse') setIsActive(false);
+          }}
           onBlur={() => setIsActive(false)}
           onClick={() => setIsActive((prev) => !prev)}
           whileHover={prefersReducedMotion ? undefined : { scale: 1.09 }}

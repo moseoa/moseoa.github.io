@@ -49,17 +49,17 @@ const Hero = ({ readyToAnimate = true }) => {
     <section
       id="home"
       ref={box}
-      className="min-h-[76vh] relative flex flex-col items-center justify-center pt-14 md:pt-16 pb-10 md:pb-12 overflow-x-hidden"
+      className="min-h-fit sm:min-h-[70dvh] md:min-h-[76vh] relative flex flex-col items-center justify-center pt-[max(4.75rem,env(safe-area-inset-top))] sm:pt-16 pb-12 sm:pb-12 overflow-x-clip"
     >
       {/* Scattered Interactive Floating Trinkets */}
       <FloatingTrinkets />
 
-      <div className="relative z-[1] flex flex-col items-center text-center gap-8 md:gap-10 px-8">
+      <div className="relative z-[1] flex flex-col items-center text-center gap-6 sm:gap-8 md:gap-10 px-5 sm:px-8">
         <div className="relative leading-none flex items-center justify-center">
           <SketchbookTitle active={readyToAnimate} className="relative z-10" />
         </div>
 
-        <div className="flex gap-16 items-center justify-center flex-wrap opacity-0 animate-[fadeUp_0.9s_ease_1.05s_forwards]">
+        <div className="flex gap-y-4 gap-x-8 sm:gap-12 md:gap-16 items-center justify-center flex-wrap opacity-0 animate-[fadeUp_0.9s_ease_1.05s_forwards]">
           {stats.map((stat, index) => (
             <React.Fragment key={index}>
               <div className="text-center">
@@ -83,7 +83,7 @@ const Hero = ({ readyToAnimate = true }) => {
       {/* Modern Scroll Indicator */}
       <div
         className={`
-          absolute bottom-3 left-1/2 -translate-x-1/2
+          absolute bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2
           flex items-center gap-3
           transition-all duration-500 ease-out
           ${showScroll ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}

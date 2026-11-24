@@ -219,16 +219,16 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="px-6 md:px-16 pt-8 md:pt-12 pb-14 md:pb-20 relative overflow-hidden"
+      className="px-6 md:px-16 pt-6 sm:pt-8 md:pt-12 pb-10 sm:pb-14 md:pb-20 relative overflow-hidden"
     >
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Animated handwritten "my sketches" header */}
-        <div className="flex flex-col items-center text-center mb-14 md:mb-16">
+        <div className="flex flex-col items-center text-center mb-10 sm:mb-14 md:mb-16">
           <MySketchesTitle />
         </div>
 
         {/* 3 torn-paper graphite sketches (labels live directly on the drawings) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-14 items-center justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 lg:gap-14 items-center justify-items-center">
           {SKETCH_CARDS.map((card) => (
             <TornSketchCard
               key={card.key}
@@ -265,7 +265,7 @@ const Projects = () => {
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               transition={{ type: 'spring', stiffness: 360, damping: 28 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl max-h-[88vh] bg-[#FBF9F4] rounded-3xl border-[2.5px] border-[#4F66BA] shadow-2xl flex flex-col overflow-hidden"
+              className="relative w-full max-w-4xl max-h-[90dvh] bg-[#FBF9F4] rounded-3xl border-[2.5px] border-[#4F66BA] shadow-2xl flex flex-col overflow-hidden"
             >
               {/* Circular close button top-right */}
               <button

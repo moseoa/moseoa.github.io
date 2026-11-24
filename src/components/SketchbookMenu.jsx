@@ -61,7 +61,7 @@ const SketchbookMenu = () => {
             onClick={() => setIsOpen(true)}
             aria-label="Open navigation menu"
             aria-expanded={isOpen}
-            className="fixed top-6 right-6 z-[120] inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#4F66BA] text-white border-[2.5px] border-[#2E4085] cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F66BA]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream transition-colors hover:bg-[#3F55A8]"
+            className="fixed top-[max(1rem,env(safe-area-inset-top))] right-[max(1rem,env(safe-area-inset-right))] sm:top-6 sm:right-6 z-[120] inline-flex items-center gap-2.5 sm:gap-3 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#4F66BA] text-white border-[2.5px] border-[#2E4085] cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F66BA]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream transition-colors hover:bg-[#3F55A8]"
             style={{
               boxShadow: '3px 4px 0px #9ED4F7',
             }}

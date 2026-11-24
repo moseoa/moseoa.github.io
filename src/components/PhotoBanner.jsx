@@ -293,7 +293,7 @@ const PhotoBanner = () => {
               exit={{ opacity: 0, scale: 0.95, y: 8 }}
               transition={{ type: 'spring', stiffness: 380, damping: 28 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-2xl border-2 border-[#9ED4F7] shadow-2xl flex flex-col md:flex-row overflow-hidden"
+              className="relative w-full max-w-4xl max-h-[92dvh] bg-white rounded-2xl border-2 border-[#9ED4F7] shadow-2xl flex flex-col md:flex-row overflow-y-auto md:overflow-hidden"
             >
               {/* Close button */}
               <button
@@ -306,7 +306,7 @@ const PhotoBanner = () => {
               </button>
 
               {/* Left column: Photo sticker canvas + Sticker tray */}
-              <div className="relative flex-1 bg-[#F4F8FD] flex flex-col items-center justify-between p-4 sm:p-6 gap-4 min-h-[260px] max-h-[60vh] md:max-h-[86vh]">
+              <div className="relative flex-1 bg-[#F4F8FD] flex flex-col items-center justify-between p-4 sm:p-6 gap-4 min-h-[240px] md:max-h-[86dvh] shrink-0">
                 <div className="flex-1 w-full flex items-center justify-center overflow-hidden">
                   <div
                     ref={photoStageRef}

@@ -85,9 +85,9 @@ const Contact = () => {
   ];
 
   return (
-    <footer id="contact" className="px-4 sm:px-8 md:px-14 pt-12 pb-16 md:pb-20">
+    <footer id="contact" className="px-4 sm:px-8 md:px-14 pt-6 sm:pt-12 pb-[max(1.75rem,env(safe-area-inset-bottom))] sm:pb-16 md:pb-20">
       <div
-        className="max-w-5xl mx-auto rounded-[2rem] bg-[#F4F8FD]/90 border-[2.5px] border-[#C7E4FA] px-6 sm:px-10 md:px-14 py-12 md:py-16"
+        className="max-w-5xl mx-auto rounded-[2rem] bg-[#F4F8FD]/90 border-[2.5px] border-[#C7E4FA] px-5 sm:px-10 md:px-14 py-9 sm:py-12 md:py-16"
         style={{
           boxShadow: '6px 7px 0px #DCEEFF',
         }}

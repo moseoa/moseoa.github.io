@@ -56,134 +56,134 @@ export const BANNER_CAPTIONS = {
     meta: '2026 · Toronto, ON',
     description: 'Tennis Match! ',
   },
-  'banner-10.jpg': {
+  'banner-11.jpg': {
     title: 'Montreal Bascilla',
     meta: '2026 · Montreal, QC',
     description: 'The best bascilla!!  ',
   },
-  'banner-11.jpg': {
+  'banner-12.jpg': {
     title: 'Montreal Art Museum',
     meta: '2026 · Montreal, QC',
     description: 'Community sketchbook project!',
   },
-  'banner-12.jpg': {
+  'banner-13.jpg': {
     title: 'Coucouching Canadian International Conference',
     meta: '2026 · Toronto, ON',
     description: 'Meeting the Honourable Bob Rae for the second time! ',
   },
-  'banner-13.jpg': {
+  'banner-14.jpg': {
     title: 'Post-Midterm Election',
     meta: '2026 · Michigan, USA',
     description: 'Supporting the candidates I believe in.',
   },
-  'banner-14.jpg': {
+  'banner-15.jpg': {
     title: 'BC trip',
     meta: '2026 · Vancouver, BC',
     description: 'Hiking in Vancouver was so much fun!',
   },
-  'banner-15.jpg': {
+  'banner-16.jpg': {
     title: 'BC trip',
     meta: '2026 · Victoria, BC',
     description: 'Mountain views!',
   },
-  'banner-16.jpg': {
+  'banner-18.jpg': {
     title: 'BC trip',
     meta: '2026 · Victoria, BC',
     description: 'My solomons are so damaged...',
   },
-  'banner-1.jpg': {
+  'banner-19.jpg': {
     title: 'BC trip',
     meta: '2026 · Victoria, BC',
     description: 'Camping!',
   },
-  'banner-18.jpg': {
+  'banner-20.jpg': {
     title: 'Working on Parliament Hill',
     meta: '2026 · Ottawa, ON',
     description: 'The Right Honourable Mark Carney chatting with my intern cohort!',
   },
-  'banner-19.jpg': {
+  'banner-21.jpg': {
     title: 'Working on Parliament Hill',
     meta: '2026 · Ottawa, ON',
     description: 'Model Parliament Prep!',
   },
-  'banner-20.jpg': {
+  'banner-22.jpg': {
     title: 'Working on Parliament Hill',
     meta: '2026 · Ottawa, ON',
     description: 'Meeting the honourable Bob Rae for the first time!',
   },
-  'banner-21.jpg': {
+  'banner-23.jpg': {
     title: 'BC trip',
     meta: '2026 · Vancouver, BC',
     description: 'Rocky Trail!',
   },
-  'banner-22.jpg': {
+  'banner-24.jpg': {
     title: 'BC trip',
     meta: '2026 · Vancouver, BC',
     description: 'Via Ferrata!',
   },
-  'banner-23.jpg': {
+  'banner-25.jpg': {
     title: 'Working on Parliament Hill',
     meta: '2026 · Ottawa, ON',
     description: 'My Awesome office - MP Aslam Rana',
   },
-  'banner-24.jpg': {
+  'banner-26.jpg': {
     title: 'Working on Parliament Hill',
     meta: '2026 · Ottawa, ON',
     description: 'Chatting with MP Dolly Begum and friends!',
   },
-  'banner-25.jpg': {
+  'banner-27.jpg': {
     title: 'Working on Parliament Hill',
     meta: '2026 · Ottawa, ON',
     description: 'Chatting with Minister Rechie Valdez!',
   },
-  'banner-26.jpg': {
+  'banner-28.jpg': {
     title: 'Working on Parliament Hill',
     meta: '2026 · Ottawa, ON',
     description: 'Chatting with Minister Surrey Sarai!',
   },
-  'banner-27.jpg': {
+  'banner-29.jpg': {
     title: 'Working on Parliament Hill',
     meta: '2026 · Ottawa, ON',
-    description: 'MP Madeline Chenette chatting with a few interns about healthcare reform in QC',
+    description: 'MP Madeline Chenette chatting with a few interns about healthcare in QC',
   },
-  'banner-28.jpg': {
+  'banner-30.jpg': {
     title: 'Youth Organizers',
     meta: '2026 · McMaster University',
     description: 'Organizing to get youth engaged in politics in Hamilton with my friend Eloise Dupois for my youth council!',
   },
-  'banner-29.jpg': {
+  'banner-31.jpg': {
     title: 'The team behind "the applied pod"!',
     meta: '2026 · McMaster University',
     description: 'My Executive Team for my podcast, "the applied pod" - we interview C-suite, directors, and proffessionals who have an economics or adjacent degree on their career path! check us out on spotify!!',
   },
-  'banner-30.jpg': {
+  'banner-32.jpg': {
     title: 'MP Aslam Rana',
     meta: '2026 · Ottawa, ON',
     description: 'Getting to chat with MP Aslam Rana after staffing a committee!',
   },
-  'banner-31.jpg': {
+  'banner-33.jpg': {
     title: 'McMaster Economics Societys first case competition',
     meta: '2026 · Toronto, ON',
     description: 'So proud of the exec team for organizing our first case competition!',
   },
-  'banner-32.jpg': {
+  'banner-34.jpg': {
     title: 'DeltaHacks 2026',
     meta: '2026 · Hamilton, ON',
     description: 'Won the swiftstudentchallenge with friends!',
   },
-  'banner-33.jpg': {
+  'banner-35.jpg': {
     title: 'KPMG Volunteering Event',
     meta: '2026 · Toronto, ON',
     description: 'Volunteering with colleagues at a dog shelter',
   },
-  'banner-34.jpg': {
+  'banner-36.jpg': {
     title: 'DeltaHacks 2026',
     meta: '2026 · Hamilton, ON',
-    description: 'Arguing for our hack!',
+    description: 'Working hard on our hack!',
   },
-  'banner-35.jpg': {
+  'banner-37.jpg': {
     title: 'KPMG',
     meta: '2026 · Toronto, ON',
-    description: 'My awesome former colleagues!',
+    description: 'My awesome colleagues!',
   },
 };

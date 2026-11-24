@@ -97,22 +97,8 @@ const Contact = () => {
           <div className="flex flex-col items-center text-center">
             <ClosingTitle className="mb-3" />
 
-            {/* Interactive sketch tray */}
-            <div className="relative w-[270px] sm:w-[300px] h-[205px] flex items-center justify-center mt-1">
-              {/* Soft sketchy pastel blue tray underneath (shows graphite specks when empty) */}
-              <div
-                aria-hidden="true"
-                className="absolute bottom-3 w-[240px] sm:w-[265px] h-[94px] rounded-[50%] bg-[#C9E5FA]/90 border-[2.5px] border-[#6FAFE8] shadow-[inset_0_-6px_14px_rgba(79,102,186,0.16)]"
-              >
-                {/* Tiny pencil shavings / graphite eraser crumbs visible once sketches are grabbed */}
-                <span className="absolute top-[36%] left-[26%] w-1.5 h-1.5 rounded-full bg-[#4F66BA]/45" />
-                <span className="absolute top-[52%] left-[44%] w-2 h-1 rounded-full bg-[#1E2A5E]/35 rotate-12" />
-                <span className="absolute top-[40%] left-[60%] w-1.5 h-1 rounded-full bg-[#4F66BA]/40 -rotate-12" />
-                <span className="absolute top-[64%] left-[34%] w-1 h-1 rounded-full bg-[#1E2A5E]/30" />
-                <span className="absolute top-[56%] left-[68%] w-1.5 h-1.5 rounded-full bg-[#4F66BA]/35" />
-                <span className="absolute top-[30%] left-[48%] w-1 h-1 rounded-full bg-[#1E2A5E]/25" />
-              </div>
-
+            {/* Interactive sketch stack */}
+            <div className="relative w-[220px] sm:w-[250px] h-[195px] flex items-center justify-center mt-2">
               {/* Stack of 3 clickable torn graphite sketches */}
               <div className="relative w-[170px] h-[175px] flex items-center justify-center">
                 <AnimatePresence>

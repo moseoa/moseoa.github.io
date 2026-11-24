@@ -7,7 +7,6 @@ import PhotoBanner from './components/PhotoBanner';
 import Projects from './components/Projects';
 import About from './components/About';
 import Contact from './components/Contact';
-import Footer from './components/Footer';
 import { LANGUAGES_BG_ASCII } from './assets/data/ascii';
 
 function App() {
@@ -39,9 +38,6 @@ function App() {
         <About />
         <Contact />
       </main>
-      <div className="relative">
-        <Footer />
-      </div>
     </div>
   );
 }

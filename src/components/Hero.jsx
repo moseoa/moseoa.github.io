@@ -69,13 +69,6 @@ const Hero = ({ readyToAnimate = true }) => {
           <SketchbookTitle active={readyToAnimate} className="relative z-10" />
         </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1 }}
-          className="text-[1.05rem] leading-[1.9] text-muted max-w-[520px]"
-        >
-
         <div className="flex gap-16 items-center justify-center flex-wrap opacity-0 animate-[fadeUp_0.9s_ease_1.05s_forwards]">
           {stats.map((stat, index) => (
             <React.Fragment key={index}>

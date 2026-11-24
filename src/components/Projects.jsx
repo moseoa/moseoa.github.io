@@ -9,7 +9,7 @@ const projects = [
     subtitle: 'Scoping Review',
     desc: 'Health Policy Work',
     tags: ['Health Policy', 'Women\'s Health', 'Family Physician Training'],
-    link: 'familymed.my.canva.site',
+    link: 'https://familymed.my.canva.site',
     visualClass: 'healthpolicy-bg',
     isHealthPolicy: true
   },

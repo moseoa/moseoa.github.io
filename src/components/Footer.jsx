@@ -121,7 +121,7 @@ const Footer = () => {
             seoa_mo_portfolio
           </div>
           <div className="lowercase">
-            {`[ end_of_page ]`}
+            {`[ hand-drawn headers and sketches made with love :) ]`}
           </div>
           <div className="lowercase">
             built_with_react

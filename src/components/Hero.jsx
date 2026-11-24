@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronDown } from 'lucide-react';
-import { LANGUAGES_BG_ASCII } from '../assets/data/ascii';
 import SketchbookTitle from './SketchbookTitle';
 import FloatingTrinkets from './FloatingTrinkets';
 
@@ -50,17 +49,8 @@ const Hero = () => {
     <section
       id="home"
       ref={box}
-      className="min-h-screen relative flex flex-col items-center justify-center pt-20 md:pt-24 pb-24 overflow-x-hidden bg-cream"
+      className="min-h-screen relative flex flex-col items-center justify-center pt-20 md:pt-24 pb-24 overflow-x-hidden"
     >
-      {/* Background ASCII Art */}
-      <div className="absolute top-0 left-0 w-[150%] h-full pointer-events-none select-none opacity-[0.05] overflow-hidden flex flex-wrap content-start z-0">
-        {Array.from({ length: 100 }).map((_, i) => (
-          <pre key={i} className="text-[10px] leading-[1.0] font-mono whitespace-pre text-ink">
-            {LANGUAGES_BG_ASCII}
-          </pre>
-        ))}
-      </div>
-
       {/* Scattered Interactive Floating Trinkets */}
       <FloatingTrinkets />
 

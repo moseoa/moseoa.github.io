@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, ArrowUpRight, Briefcase, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { PROJECTS_BG_ASCII } from '../assets/data/ascii';
 import MySketchesTitle from './MySketchesTitle';
 import projectsPaintingSrc from '../assets/images/projects-painting.jpg';
 
@@ -184,17 +183,8 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="px-6 md:px-16 py-20 md:py-28 border-t border-border relative overflow-hidden bg-cream"
+      className="px-6 md:px-16 py-20 md:py-28 relative overflow-hidden"
     >
-      {/* Background ASCII Art */}
-      <div className="absolute top-0 left-0 w-[150%] h-full pointer-events-none select-none opacity-[0.05] overflow-hidden flex flex-wrap content-start z-0">
-        {Array.from({ length: 100 }).map((_, i) => (
-          <pre key={i} className="text-[10px] leading-[1.0] font-mono whitespace-pre text-ink">
-            {PROJECTS_BG_ASCII}
-          </pre>
-        ))}
-      </div>
-
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Animated handwritten "my sketches" header */}
         <div className="flex flex-col items-center text-center mb-14 md:mb-16">

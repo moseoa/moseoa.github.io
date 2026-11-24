@@ -102,20 +102,16 @@ const PhotoBanner = () => {
   return (
     <section
       aria-label="Photo moments gallery"
-      className="relative w-full py-10 md:py-14 bg-cream border-t border-border/70 overflow-hidden"
+      className="relative w-full py-10 md:py-14 overflow-hidden"
     >
-      {/* Edge fade masks so photos glide cleanly into the cream paper */}
+      {/* Infinite marquee track with transparent edge fade mask so ASCII backdrop stays seamless */}
       <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-24 z-10 bg-gradient-to-r from-cream via-cream/70 to-transparent"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-24 z-10 bg-gradient-to-l from-cream via-cream/70 to-transparent"
-      />
-
-      {/* Infinite marquee track (pauses on hover) */}
-      <div className="group w-full overflow-hidden py-3">
+        className="group w-full overflow-hidden py-3"
+        style={{
+          maskImage: 'linear-gradient(to right, transparent, black 6%, black 94%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 6%, black 94%, transparent)',
+        }}
+      >
         <div className="flex w-max animate-banner-loop group-hover:[animation-play-state:paused]">
           {renderTrack('primary', false)}
           {renderTrack('clone', true)}

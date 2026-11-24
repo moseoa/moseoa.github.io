@@ -1,7 +1,6 @@
 // src/components/footer.jsx
 import React, { useState, useEffect } from 'react';
 import Icon from './Icon';
-import { TECH_STACK_BG_ASCII } from '../assets/data/ascii';
 
 const Footer = () => {
   const [currentTime, setCurrentTime] = useState('');
@@ -41,16 +40,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer id="footer" className="bg-cream text-ink py-16 font-mono relative overflow-hidden">
-      {/* Background ASCII Art */}
-      <div className="absolute top-0 left-0 w-[150%] h-full pointer-events-none select-none opacity-[0.05] overflow-hidden flex flex-wrap content-start z-0">
-        {Array.from({ length: 100 }).map((_, i) => (
-          <pre key={i} className="text-[10px] leading-[1.0] font-mono whitespace-pre text-ink">
-            {TECH_STACK_BG_ASCII}
-          </pre>
-        ))}
-      </div>
-
+    <footer id="footer" className="text-ink py-16 font-mono relative overflow-hidden">
       <div className="container max-w-7xl mx-auto px-6 relative z-10">
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">

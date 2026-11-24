@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { FileText, Download, ExternalLink, X } from 'lucide-react';
-import { PROFILE_BG_ASCII } from '../assets/data/ascii';
 import resumePdf from '../assets/resume/SeoaMo_Resume.pdf';
 
 const About = () => {
@@ -30,16 +29,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="px-6 md:px-16 py-20 md:py-32 border-t border-border grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start relative overflow-hidden bg-cream">
-      {/* Background ASCII Art */}
-      <div className="absolute top-0 left-0 w-[150%] h-full pointer-events-none select-none opacity-[0.05] overflow-hidden flex flex-wrap content-start z-0">
-        {Array.from({ length: 100 }).map((_, i) => (
-          <pre key={i} className="text-[10px] leading-[1.0] font-mono whitespace-pre text-ink">
-            {PROFILE_BG_ASCII}
-          </pre>
-        ))}
-      </div>
-
+    <section id="about" className="px-6 md:px-16 py-20 md:py-32 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start relative overflow-hidden">
       <div className="relative z-10">
         <div className="flex items-center gap-6 mb-10">
           <span className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-rust">About</span>

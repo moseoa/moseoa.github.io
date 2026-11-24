@@ -4,38 +4,9 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronDown } from 'lucide-react';
 import { PEARL_ASCII, LANGUAGES_BG_ASCII } from '../assets/data/ascii';
+import SketchbookTitle from './SketchbookTitle';
 
 gsap.registerPlugin(ScrollTrigger);
-
-const WORDS = {
-  line1: ['Seoa'],
-  line2: ['Mo'],
-};
-
-// Utility for randomness
-const rand = (min, max) => Math.random() * (max - min) + min;
-
-function LetterDisplay({ word }) {
-  if (!word) return null;
-  return word.split('').map((ch, i) => (
-    <div
-      key={i}
-      className={`letter group relative inline-flex items-center justify-center
-      font-playfair font-bold tracking-tighter
-      text-[clamp(6rem,14vw,14rem)]
-      cursor-default select-none
-      `}
-      data-speed={rand(0.8, 1.03)}
-    >
-      <span
-        className="letter-inner relative z-10 text-rust"
-        style={{ WebkitTextStroke: '1.5px transparent' }}
-      >
-        {ch === ' ' ? '\u00A0' : ch}
-      </span>
-    </div>
-  ));
-}
 
 const Hero = () => {
   const box = useRef(null);
@@ -45,44 +16,17 @@ const Hero = () => {
     if (!box.current) return;
 
     const ctx = gsap.context(() => {
-      box.current.querySelectorAll('.letter').forEach((el) => {
-        const innerSpan = el.querySelector('.letter-inner');
-        const speed = parseFloat(el.dataset.speed);
-
-        const shouldFade = Math.random() > 0.55; 
-
-        let yPos = (1 - speed) * 0.5 * ScrollTrigger.maxScroll(window);
-        if (yPos > 350) yPos = 350;
-
-        const animVars = {
-          y: yPos,
-          rotation: rand(-12, 12),
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: document.documentElement,
-            start: 0,
-            end: window.innerHeight,
-            scrub: 0.5,
-            invalidateOnRefresh: true,
-          }
-        };
-
-        gsap.to(el, animVars);
-
-        if (shouldFade && innerSpan) {
-          gsap.to(innerSpan, {
-            color: 'transparent',
-            webkitTextStrokeColor: '#C4440A', 
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: document.documentElement,
-              start: 0,
-              end: window.innerHeight / 1.35,
-              scrub: 0.5,
-              invalidateOnRefresh: true,
-            }
-          });
-        }
+      gsap.to('.sketchbook-title', {
+        y: 60,
+        opacity: 0.25,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: document.documentElement,
+          start: 0,
+          end: window.innerHeight,
+          scrub: 0.5,
+          invalidateOnRefresh: true,
+        },
       });
 
       gsap.to('.pearl-wrapper', {
@@ -136,13 +80,8 @@ const Hero = () => {
           Portfolio — 2026
         </motion.p>
 
-        <div className="relative leading-none">
-          <div className="flex flex-wrap justify-center">
-            <LetterDisplay word={WORDS.line1[0]} />
-          </div>
-          <div className="flex flex-wrap justify-center mt-[-0.1em]">
-            <LetterDisplay word={WORDS.line2[0]} />
-          </div>
+        <div className="relative leading-none flex items-center justify-center">
+          <SketchbookTitle className="relative z-10" />
 
           {/* PEARL_ASCII - Aligned to bottom right of text */}
           <div className="pearl-wrapper absolute bottom-[-0.05em] right-[-1.2em] md:right-[-1.5em] z-0 select-none hidden sm:block">

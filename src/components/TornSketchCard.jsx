@@ -20,6 +20,7 @@ const TornSketchCard = ({
   ariaLabel,
   variant = 0,
   tiltClass = '-rotate-1',
+  objectPositionClass = 'object-center',
   onClick,
   compact = false,
 }) => {
@@ -201,14 +202,14 @@ const TornSketchCard = ({
           style={{ clipPath: underClipPath }}
         />
         <div
-          className="relative w-[124px] sm:w-[140px] aspect-[10/9] overflow-hidden bg-[#F4EFE6]"
+          className="relative w-[124px] sm:w-[140px] aspect-[10/9.5] overflow-hidden bg-[#F4EFE6]"
           style={{ clipPath }}
         >
           <img
             src={src}
             alt={alt}
             draggable="false"
-            className="w-full h-full object-cover object-center block"
+            className={`w-full h-full object-cover ${objectPositionClass} block`}
           />
         </div>
       </div>
@@ -243,14 +244,14 @@ const TornSketchCard = ({
 
         {/* Torn sketchbook sheet with interactive graphite drawing canvas on top */}
         <div
-          className="relative w-[245px] sm:w-[270px] lg:w-[285px] aspect-[10/9] overflow-hidden bg-[#F4EFE6]"
+          className="relative w-[245px] sm:w-[270px] lg:w-[285px] aspect-[10/9.5] overflow-hidden bg-[#F4EFE6]"
           style={{ clipPath }}
         >
           <img
             src={src}
             alt={alt}
             draggable="false"
-            className="w-full h-full object-cover object-center block transition-transform duration-500 group-hover:scale-[1.03]"
+            className={`w-full h-full object-cover ${objectPositionClass} block transition-transform duration-500 group-hover:scale-[1.03]`}
           />
 
           {/* Subtle paper grain vignette inside torn edge */}

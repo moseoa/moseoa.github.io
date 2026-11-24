@@ -131,6 +131,7 @@ const SKETCH_CARDS = [
     ariaLabel: 'Open interests popup',
     variant: 2,
     tiltClass: '-rotate-[1.5deg]',
+    objectPositionClass: 'object-bottom',
   },
 ];
 
@@ -237,6 +238,7 @@ const Projects = () => {
               ariaLabel={card.ariaLabel}
               variant={card.variant}
               tiltClass={card.tiltClass}
+              objectPositionClass={card.objectPositionClass}
               onClick={() => setActiveModal(card.key)}
             />
           ))}
@@ -284,6 +286,7 @@ const Projects = () => {
                       alt={activeSketchCard.alt}
                       variant={activeSketchCard.variant}
                       tiltClass={activeSketchCard.tiltClass}
+                      objectPositionClass={activeSketchCard.objectPositionClass}
                       compact
                     />
                   )}

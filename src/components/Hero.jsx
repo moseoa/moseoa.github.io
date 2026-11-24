@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronDown } from 'lucide-react';
 import SketchbookTitle from './SketchbookTitle';
 import FloatingTrinkets from './FloatingTrinkets';
+import ViewSketchesButton from './ViewSketchesButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,15 +96,7 @@ const Hero = () => {
           ))}
         </div>
 
-        <motion.a
-          href="#projects"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.15 }}
-          className="inline-flex items-center gap-3 font-mono text-[0.75rem] uppercase tracking-[0.1em] text-ink no-underline border-b border-ink pb-1 transition-colors hover:text-rust hover:border-rust"
-        >
-          View selected work →
-        </motion.a>
+        <ViewSketchesButton href="#projects" />
       </div>
 
       {/* Modern Scroll Indicator */}

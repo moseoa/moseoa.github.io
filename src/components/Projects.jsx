@@ -189,8 +189,6 @@ const Projects = () => {
         {/* Animated handwritten "my sketches" header */}
         <div className="flex flex-col items-center text-center mb-14 md:mb-16">
           <MySketchesTitle />
-          <p className="mt-2 font-mono text-[0.7rem] uppercase tracking-[0.2em] text-[#5B6FA8]">
-          </p>
         </div>
 
         {/* 3-column sketchbook icon menu (matching "main course" layout) */}

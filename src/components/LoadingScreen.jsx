@@ -109,7 +109,7 @@ const LoadingScreen = ({ onComplete }) => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.45, ease: 'easeInOut' }}
-          className="fixed inset-0 z-[300] bg-cream flex flex-col items-center justify-center px-6 select-none"
+          className="fixed -top-28 -bottom-28 -left-6 -right-6 z-[300] bg-cream flex flex-col items-center justify-center px-6 select-none"
         >
           <motion.div
             initial={{ opacity: 0.9, scale: 0.98 }}

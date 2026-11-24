@@ -164,7 +164,10 @@ const TornSketchCard = ({
       if (isStart || !lastPosRef.current) {
         drawGraphiteSegment(x - 1, y + 0.5, x + 1, y - 0.5);
       } else {
-        drawGraphiteSegment(lastPosRef.current.x, lastPosRef.current.y, x, y);
+        const dist = Math.hypot(x - lastPosRef.current.x, y - lastPosRef.current.y);
+        if (dist <= 110) {
+          drawGraphiteSegment(lastPosRef.current.x, lastPosRef.current.y, x, y);
+        }
       }
       lastPosRef.current = { x, y };
       lastDrawTimeRef.current = performance.now();

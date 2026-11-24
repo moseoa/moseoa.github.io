@@ -3,12 +3,10 @@ import React, { useEffect, useRef } from 'react';
 /**
  * Full-viewport transparent pastel light-blue graphite pencil trail
  * that gently sketches behind the cursor on both laptop (mouse/trackpad)
- * and mobile (touch), plus a floating pencil nib indicator during touch.
+ * and mobile (touch), without wiping strokes during mobile URL bar shifts.
  */
 const BlueGraphiteCursor = () => {
   const canvasRef = useRef(null);
-  const touchPencilRef = useRef(null);
-  const touchPencilFillRef = useRef(null);
 
   useEffect(() => {
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -21,108 +19,47 @@ const BlueGraphiteCursor = () => {
     if (!ctx) return undefined;
 
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let viewW = window.innerWidth;
-    let viewH = window.innerHeight;
+    let canvasW = 0;
+    let canvasH = 0;
 
-    const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      viewW = window.visualViewport?.width || window.innerWidth;
-      viewH = window.visualViewport?.height || window.innerHeight;
-      canvas.width = Math.round(viewW * dpr);
-      canvas.height = Math.round(viewH * dpr);
+    const syncSize = (force = false) => {
+      const nextW = window.innerWidth;
+      // Add extra vertical headroom so iOS Safari toolbar collapse/expand never forces a resize/clear
+      const minH = (window.visualViewport?.height || window.innerHeight) + 160;
+      const nextDpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      if (
+        !force &&
+        nextW === canvasW &&
+        minH <= canvasH &&
+        nextDpr === dpr
+      ) {
+        return;
+      }
+
+      dpr = nextDpr;
+      canvasW = nextW;
+      canvasH = Math.max(minH, window.innerHeight + 160);
+      canvas.style.width = `${canvasW}px`;
+      canvas.style.height = `${canvasH}px`;
+      canvas.width = Math.round(canvasW * dpr);
+      canvas.height = Math.round(canvasH * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
-    resize();
+    syncSize(true);
 
     let lastMousePos = null;
     let lastTouchPos = null;
+    let activeTouchId = null;
     let lastDrawTime = 0;
     let rafId = null;
-    let hidePencilTimer = null;
+    let pendingTouchPoints = [];
 
-    const fadeLoop = (now) => {
-      const idleMs = now - lastDrawTime;
-      ctx.save();
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.fillStyle = idleMs > 120 ? 'rgba(0, 0, 0, 0.032)' : 'rgba(0, 0, 0, 0.016)';
-      ctx.fillRect(0, 0, viewW, viewH);
-      ctx.restore();
-
-      if (idleMs > 1800) {
-        ctx.clearRect(0, 0, viewW, viewH);
-        rafId = null;
-        return;
-      }
-
-      rafId = requestAnimationFrame(fadeLoop);
-    };
-
-    const ensureFadeLoop = () => {
-      if (!rafId) {
-        rafId = requestAnimationFrame(fadeLoop);
-      }
-    };
-
-    const isPausedSurface = (target) =>
-      Boolean(
-        target &&
-          typeof target.closest === 'function' &&
-          target.closest('[data-graphite-card="true"], [data-sticker-stage="true"]')
-      );
-
-    const isInteractiveTarget = (target) =>
-      Boolean(
-        target &&
-          typeof target.closest === 'function' &&
-          target.closest('a, button, [role="button"], .cursor-pointer')
-      );
-
-    const showTouchPencil = (x, y, target) => {
-      const nib = touchPencilRef.current;
-      if (!nib) return;
-      if (hidePencilTimer) {
-        window.clearTimeout(hidePencilTimer);
-        hidePencilTimer = null;
-      }
-      if (
-        target &&
-        typeof target.closest === 'function' &&
-        target.closest('[data-sticker-stage="true"]')
-      ) {
-        nib.style.opacity = '0';
-        return;
-      }
-      if (touchPencilFillRef.current) {
-        touchPencilFillRef.current.setAttribute(
-          'fill',
-          isInteractiveTarget(target) ? '#4F66BA' : '#9ED4F7'
-        );
-      }
-      // Offset so the pencil lead tip (4, 24) rests cleanly right above/under the finger
-      nib.style.transform = `translate3d(${Math.round(x - 4)}px, ${Math.round(y - 24)}px, 0)`;
-      nib.style.opacity = '0.92';
-    };
-
-    const hideTouchPencil = (delayMs = 340) => {
-      const nib = touchPencilRef.current;
-      if (!nib) return;
-      if (hidePencilTimer) window.clearTimeout(hidePencilTimer);
-      if (delayMs <= 0) {
-        nib.style.opacity = '0';
-        return;
-      }
-      hidePencilTimer = window.setTimeout(() => {
-        if (touchPencilRef.current) {
-          touchPencilRef.current.style.opacity = '0';
-        }
-      }, delayMs);
-    };
-
-    const drawBlueGraphite = (x0, y0, x1, y1) => {
+    const drawBlueGraphite = (x0, y0, x1, y1, maxJump = 220) => {
       const dx = x1 - x0;
       const dy = y1 - y0;
       const dist = Math.hypot(dx, dy);
-      if (dist < 0.5 || dist > 220) return;
+      if (dist < 0.5 || dist > maxJump) return;
 
       const steps = Math.max(1, Math.ceil(dist / 2.2));
       const speedFactor = Math.max(0.32, Math.min(1.0, 16 / (dist + 8)));
@@ -168,11 +105,53 @@ const BlueGraphiteCursor = () => {
       ctx.restore();
     };
 
-    const onPointerMove = (e) => {
-      // Touch input is handled continuously via passive touch listeners so iOS Safari scroll never cancels it
-      if (e.pointerType === 'touch') return;
+    const fadeLoop = (now) => {
+      // Flush queued touch points cleanly inside rAF so high-refresh screens stay silk-smooth
+      if (pendingTouchPoints.length > 0) {
+        const batch = pendingTouchPoints;
+        pendingTouchPoints = [];
+        for (let i = 0; i < batch.length; i += 1) {
+          const pt = batch[i];
+          if (lastTouchPos) {
+            drawBlueGraphite(lastTouchPos.x, lastTouchPos.y, pt.x, pt.y, 95);
+          }
+          lastTouchPos = pt;
+        }
+        lastDrawTime = now;
+      }
 
-      hideTouchPencil(0);
+      const idleMs = now - lastDrawTime;
+      ctx.save();
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = idleMs > 120 ? 'rgba(0, 0, 0, 0.032)' : 'rgba(0, 0, 0, 0.016)';
+      ctx.fillRect(0, 0, canvasW, canvasH);
+      ctx.restore();
+
+      if (idleMs > 1800 && pendingTouchPoints.length === 0) {
+        ctx.clearRect(0, 0, canvasW, canvasH);
+        rafId = null;
+        return;
+      }
+
+      rafId = requestAnimationFrame(fadeLoop);
+    };
+
+    const ensureFadeLoop = () => {
+      if (!rafId) {
+        rafId = requestAnimationFrame(fadeLoop);
+      }
+    };
+
+    const isPausedSurface = (target) =>
+      Boolean(
+        target &&
+          typeof target.closest === 'function' &&
+          target.closest('[data-graphite-card="true"], [data-sticker-stage="true"]')
+      );
+
+    // Desktop / laptop mouse & pen cursor trail (unchanged experience)
+    const onPointerMove = (e) => {
+      if (e.pointerType === 'touch') return;
 
       if (isPausedSurface(e.target)) {
         lastMousePos = null;
@@ -182,7 +161,7 @@ const BlueGraphiteCursor = () => {
       const x = e.clientX;
       const y = e.clientY;
       if (lastMousePos) {
-        drawBlueGraphite(lastMousePos.x, lastMousePos.y, x, y);
+        drawBlueGraphite(lastMousePos.x, lastMousePos.y, x, y, 220);
         lastDrawTime = performance.now();
         ensureFadeLoop();
       }
@@ -193,51 +172,68 @@ const BlueGraphiteCursor = () => {
       lastMousePos = null;
     };
 
+    // Mobile / iPhone single-finger touch trail (passive so scrolling is never blocked)
+    const findActiveTouch = (touches) => {
+      if (!touches || touches.length === 0) return null;
+      if (activeTouchId === null) return touches[0];
+      for (let i = 0; i < touches.length; i += 1) {
+        if (touches[i].identifier === activeTouchId) return touches[i];
+      }
+      return null;
+    };
+
     const onTouchStart = (e) => {
-      const touch = e.touches?.[0];
-      if (!touch) return;
-      const x = touch.clientX;
-      const y = touch.clientY;
-      showTouchPencil(x, y, e.target);
+      if (!e.touches || e.touches.length !== 1) {
+        activeTouchId = null;
+        lastTouchPos = null;
+        pendingTouchPoints = [];
+        return;
+      }
+
+      const touch = e.touches[0];
+      activeTouchId = touch.identifier;
+      pendingTouchPoints = [];
 
       if (isPausedSurface(e.target)) {
         lastTouchPos = null;
         return;
       }
 
-      lastTouchPos = { x, y };
-      drawBlueGraphite(x - 1.5, y + 1, x + 1.5, y - 1);
+      lastTouchPos = { x: touch.clientX, y: touch.clientY };
+    };
+
+    const onTouchMove = (e) => {
+      if (!e.touches || e.touches.length !== 1) {
+        lastTouchPos = null;
+        pendingTouchPoints = [];
+        return;
+      }
+
+      const touch = findActiveTouch(e.touches);
+      if (!touch) return;
+
+      if (isPausedSurface(e.target)) {
+        lastTouchPos = null;
+        pendingTouchPoints = [];
+        return;
+      }
+
+      pendingTouchPoints.push({ x: touch.clientX, y: touch.clientY });
       lastDrawTime = performance.now();
       ensureFadeLoop();
     };
 
-    const onTouchMove = (e) => {
-      const touch = e.touches?.[0];
-      if (!touch) return;
-      const x = touch.clientX;
-      const y = touch.clientY;
-      showTouchPencil(x, y, e.target);
-
-      if (isPausedSurface(e.target)) {
-        lastTouchPos = null;
-        return;
-      }
-
-      if (lastTouchPos) {
-        drawBlueGraphite(lastTouchPos.x, lastTouchPos.y, x, y);
-        lastDrawTime = performance.now();
-        ensureFadeLoop();
-      }
-      lastTouchPos = { x, y };
-    };
-
     const onTouchEnd = () => {
+      activeTouchId = null;
       lastTouchPos = null;
-      hideTouchPencil(320);
+      pendingTouchPoints = [];
     };
 
-    window.addEventListener('resize', resize);
-    window.visualViewport?.addEventListener('resize', resize);
+    const onResize = () => syncSize(false);
+    const onOrientationChange = () => syncSize(true);
+
+    window.addEventListener('resize', onResize);
+    window.addEventListener('orientationchange', onOrientationChange);
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     document.addEventListener('pointerleave', onPointerLeave);
     window.addEventListener('touchstart', onTouchStart, { passive: true });
@@ -246,65 +242,24 @@ const BlueGraphiteCursor = () => {
     window.addEventListener('touchcancel', onTouchEnd, { passive: true });
 
     return () => {
-      window.removeEventListener('resize', resize);
-      window.visualViewport?.removeEventListener('resize', resize);
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('orientationchange', onOrientationChange);
       window.removeEventListener('pointermove', onPointerMove);
       document.removeEventListener('pointerleave', onPointerLeave);
       window.removeEventListener('touchstart', onTouchStart);
       window.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('touchend', onTouchEnd);
       window.removeEventListener('touchcancel', onTouchEnd);
-      if (hidePencilTimer) window.clearTimeout(hidePencilTimer);
       if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
 
   return (
-    <>
-      <canvas
-        ref={canvasRef}
-        aria-hidden="true"
-        className="fixed inset-0 w-full h-full pointer-events-none z-[110]"
-      />
-      {/* Floating touch-device pencil nib (matches CSS desktop pencil cursor; stays hidden on mouse) */}
-      <div
-        ref={touchPencilRef}
-        aria-hidden="true"
-        className="fixed top-0 left-0 pointer-events-none z-[220] opacity-0 transition-opacity duration-200 will-change-transform"
-      >
-        <svg
-          width="28"
-          height="28"
-          viewBox="0 0 28 28"
-          className="drop-shadow-[0_2px_4px_rgba(30,42,94,0.22)]"
-        >
-          <path
-            ref={touchPencilFillRef}
-            d="M21.2 3.2a2.4 2.4 0 0 1 3.4 3.4L10.3 20.9 4.5 23.5l2.6-5.8L21.2 3.2Z"
-            fill="#9ED4F7"
-            stroke="#1E2A5E"
-            strokeWidth="1.7"
-            strokeLinejoin="round"
-          />
-          <path d="M18.4 6l3.4 3.4" stroke="#1E2A5E" strokeWidth="1.6" />
-          <path
-            d="M21.2 3.2a2.4 2.4 0 0 1 3.4 3.4l-1.9 1.9-3.4-3.4 1.9-1.9Z"
-            fill="#F7F3EA"
-            stroke="#1E2A5E"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M7.1 17.7l3.2 3.2-5.8 2.6 2.6-5.8Z"
-            fill="#F5E6D3"
-            stroke="#1E2A5E"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-          <path d="M4.5 23.5l2.4-1.1-1.3-1.3-1.1 2.4Z" fill="#4F66BA" />
-        </svg>
-      </div>
-    </>
+    <canvas
+      ref={canvasRef}
+      aria-hidden="true"
+      className="fixed top-0 left-0 pointer-events-none z-[110]"
+    />
   );
 };
 

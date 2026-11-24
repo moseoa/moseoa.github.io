@@ -126,7 +126,6 @@ const About = () => {
               <p className="italic text-[#5B6FA8] mb-2">add-ons:</p>
               <ul className="list-none space-y-1.5 font-medium text-[#1E2A5E]">
                 <li>✦ minor in economics</li>
-                <li>✦ kpmg canada 2025 · federal government 2026 </li>
                 <li>✦ fluent in mandarin, korean &amp; english</li>
               </ul>
             </div>

@@ -10,7 +10,7 @@ const TOTAL_FRAMES = 35;
 const FRAME_INTERVAL_MS = 62.5; // ~16 fps matching original recording (~2.2s total)
 const START_DELAY_MS = 180;
 
-const SketchbookTitle = ({ className = '' }) => {
+const SketchbookTitle = ({ active = true, className = '' }) => {
   const canvasRef = useRef(null);
   const sheetsRef = useRef(null);
   const rafRef = useRef(null);
@@ -132,7 +132,7 @@ const SketchbookTitle = ({ className = '' }) => {
   }, []);
 
   useEffect(() => {
-    if (ready) {
+    if (ready && active) {
       playAnimation(START_DELAY_MS);
     }
     return () => {
@@ -141,7 +141,7 @@ const SketchbookTitle = ({ className = '' }) => {
         rafRef.current = null;
       }
     };
-  }, [ready, playAnimation]);
+  }, [ready, active, playAnimation]);
 
   const handleReplay = () => {
     if (ready) {

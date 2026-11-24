@@ -220,6 +220,7 @@ const TornSketchCard = ({
     <div id={id} className="flex flex-col items-center justify-center scroll-mt-24">
       <motion.button
         type="button"
+        data-graphite-card="true"
         onClick={onClick}
         onPointerEnter={handlePointerEnter}
         onPointerMove={handlePointerMove}

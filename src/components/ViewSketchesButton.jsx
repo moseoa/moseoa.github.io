@@ -9,7 +9,7 @@ const TOTAL_FRAMES = 24;
 const FRAME_INTERVAL_MS = 62.5; // ~16 fps (~1.5s total)
 const START_DELAY_MS = 1150; // Starts drawing smoothly right after hero intro fades in
 
-const ViewSketchesButton = ({ href = '#projects', className = '' }) => {
+const ViewSketchesButton = ({ href = '#projects', active = true, className = '' }) => {
   const canvasRef = useRef(null);
   const sheetRef = useRef(null);
   const rafRef = useRef(null);
@@ -110,7 +110,7 @@ const ViewSketchesButton = ({ href = '#projects', className = '' }) => {
   }, []);
 
   useEffect(() => {
-    if (ready) {
+    if (ready && active) {
       playAnimation(START_DELAY_MS);
     }
     return () => {
@@ -119,7 +119,7 @@ const ViewSketchesButton = ({ href = '#projects', className = '' }) => {
         rafRef.current = null;
       }
     };
-  }, [ready, playAnimation]);
+  }, [ready, active, playAnimation]);
 
   const handleClick = (e) => {
     const id = href.replace(/^#/, '');

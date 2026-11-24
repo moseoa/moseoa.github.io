@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import LoadingScreen from './components/LoadingScreen';
+import BlueGraphiteCursor from './components/BlueGraphiteCursor';
 import SketchbookMenu from './components/SketchbookMenu';
 import Hero from './components/Hero';
 import PhotoBanner from './components/PhotoBanner';
@@ -9,8 +11,14 @@ import Footer from './components/Footer';
 import { LANGUAGES_BG_ASCII } from './assets/data/ascii';
 
 function App() {
+  const [introDone, setIntroDone] = useState(false);
+  const handleLoaderComplete = useCallback(() => setIntroDone(true), []);
+
   return (
     <div className="min-h-screen relative bg-cream">
+      <LoadingScreen onComplete={handleLoaderComplete} />
+      <BlueGraphiteCursor />
+
       {/* Seamless full-page ASCII art background */}
       <div
         aria-hidden="true"
@@ -25,7 +33,7 @@ function App() {
 
       <SketchbookMenu />
       <main className="relative">
-        <Hero />
+        <Hero readyToAnimate={introDone} />
         <PhotoBanner />
         <Projects />
         <About />

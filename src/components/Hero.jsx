@@ -9,7 +9,7 @@ import ViewSketchesButton from './ViewSketchesButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Hero = () => {
+const Hero = ({ readyToAnimate = true }) => {
   const box = useRef(null);
   const [showScroll, setShowScroll] = useState(true);
 
@@ -66,7 +66,7 @@ const Hero = () => {
         </motion.p>
 
         <div className="relative leading-none flex items-center justify-center">
-          <SketchbookTitle className="relative z-10" />
+          <SketchbookTitle active={readyToAnimate} className="relative z-10" />
         </div>
 
         <motion.p
@@ -75,7 +75,14 @@ const Hero = () => {
           transition={{ duration: 0.9, delay: 1 }}
           className="text-[1.05rem] leading-[1.9] text-muted max-w-[520px]"
         >
-          Hi there! I am Seoa, a **multi-disciplinary Political Science (public law & judicial studies specialization) student** passionate about **public policy, technology, and design.** 
+          Hi there! I am Seoa, a{' '}
+          <strong className="font-semibold text-ink">
+            multi-disciplinary Political Science (public law &amp; judicial studies specialization) student
+          </strong>{' '}
+          passionate about{' '}
+          <strong className="font-semibold text-ink">
+            public policy, technology, and design.
+          </strong>
         </motion.p>
 
         <div className="flex gap-16 items-center justify-center flex-wrap opacity-0 animate-[fadeUp_0.9s_ease_1.05s_forwards]">
@@ -96,7 +103,7 @@ const Hero = () => {
           ))}
         </div>
 
-        <ViewSketchesButton href="#projects" />
+        <ViewSketchesButton href="#projects" active={readyToAnimate} />
       </div>
 
       {/* Modern Scroll Indicator */}

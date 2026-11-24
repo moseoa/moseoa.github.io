@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronDown } from 'lucide-react';
-import { PEARL_ASCII, LANGUAGES_BG_ASCII } from '../assets/data/ascii';
+import { LANGUAGES_BG_ASCII } from '../assets/data/ascii';
 import SketchbookTitle from './SketchbookTitle';
 import FloatingTrinkets from './FloatingTrinkets';
 

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { X, ArrowUpRight, Briefcase, Sparkles } from 'lucide-react';
+import { X, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MySketchesTitle from './MySketchesTitle';
-import projectsPaintingSrc from '../assets/images/projects-painting.jpg';
+import TornSketchCard from './TornSketchCard';
+import sketchProjectsSrc from '../assets/images/sketch-projects.jpg';
+import sketchExperiencesSrc from '../assets/images/sketch-experiences.jpg';
+import sketchInterestsSrc from '../assets/images/sketch-interests.jpg';
 
 const projects = [
   {
@@ -85,7 +88,7 @@ const interests = [
     id: 1,
     title: 'Painting & Sketching',
     meta: 'Visual Art',
-    desc: 'Acrylic paintings, pencil doodles, and hand-drawn sketches — including the artwork and animated titles throughout this sketchbook.',
+    desc: 'Acrylic paintings, graphite portraits, and hand-drawn sketches — including the artwork and animated titles throughout this sketchbook.',
   },
   {
     id: 2,
@@ -98,6 +101,36 @@ const interests = [
     title: 'Access to Justice & Public Policy',
     meta: 'Policy × Tech',
     desc: 'Exploring how technology, digital infrastructure, and thoughtful policy can expand access to justice and access to care.',
+  },
+];
+
+const SKETCH_CARDS = [
+  {
+    key: 'projects',
+    id: undefined,
+    src: sketchProjectsSrc,
+    alt: 'Hand-drawn graphite eye sketch labeled Projects',
+    ariaLabel: 'Open projects popup',
+    variant: 0,
+    tiltClass: '-rotate-[2deg]',
+  },
+  {
+    key: 'experiences',
+    id: 'experiences',
+    src: sketchExperiencesSrc,
+    alt: 'Hand-drawn graphite portrait sketch labeled Experiences',
+    ariaLabel: 'Open experiences popup',
+    variant: 1,
+    tiltClass: 'rotate-[1.4deg]',
+  },
+  {
+    key: 'interests',
+    id: 'interests',
+    src: sketchInterestsSrc,
+    alt: 'Hand-drawn graphite side-profile sketch labeled Interests',
+    ariaLabel: 'Open interests popup',
+    variant: 2,
+    tiltClass: '-rotate-[1.5deg]',
   },
 ];
 
@@ -157,6 +190,8 @@ const ProjectPreviewCard = ({ project }) => (
 const Projects = () => {
   const [activeModal, setActiveModal] = useState(null); // 'projects' | 'experiences' | 'interests' | null
 
+  const activeSketchCard = SKETCH_CARDS.find((card) => card.key === activeModal);
+
   useEffect(() => {
     const onOpenModal = (e) => {
       if (e.detail && ['projects', 'experiences', 'interests'].includes(e.detail)) {
@@ -191,123 +226,20 @@ const Projects = () => {
           <MySketchesTitle />
         </div>
 
-        {/* 3-column sketchbook icon menu (matching "main course" layout) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-14 items-end">
-          {/* 1. Projects — hand-painted artwork icon */}
-          <div className="flex flex-col items-center text-center">
-            <motion.button
-              type="button"
-              onClick={() => setActiveModal('projects')}
-              whileHover={{ scale: 1.04, y: -6, rotate: 0 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: 'spring', stiffness: 360, damping: 22 }}
-              aria-label="Open projects popup"
-              className="group relative mb-6 p-2 bg-white rounded-2xl border-[2.5px] border-[#2E4085] -rotate-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F66BA]/50"
-              style={{ boxShadow: '5px 6px 0px #9ED4F7' }}
-            >
-              <div className="w-[220px] sm:w-[240px] aspect-[4/3] overflow-hidden rounded-xl bg-[#EAF3FB]">
-                <img
-                  src={projectsPaintingSrc}
-                  alt="Seoa's acrylic painting — Projects"
-                  draggable="false"
-                  className="w-full h-full object-cover block transition-transform duration-500 group-hover:scale-[1.04]"
-                />
-              </div>
-            </motion.button>
-
-            <h3 className="font-playfair font-bold text-[1.65rem] text-[#1E2A5E] leading-tight mb-1.5">
-              projects
-            </h3>
-            <p className="text-[0.88rem] text-[#5B6FA8] mb-5 max-w-[230px]">
-              things i&apos;ve built, researched &amp; designed!
-            </p>
-            <motion.button
-              type="button"
-              onClick={() => setActiveModal('projects')}
-              whileHover={{ scale: 1.05, y: -1 }}
-              whileTap={{ scale: 0.96, y: 1 }}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#4F66BA] text-white border-[2px] border-[#2E4085] font-sans font-extrabold lowercase text-[0.95rem] tracking-[-0.01em] hover:bg-[#3F55A8] transition-colors cursor-pointer"
-              style={{ boxShadow: '3px 4px 0px #9ED4F7' }}
-            >
-              open projects
-            </motion.button>
-          </div>
-
-          {/* 2. Experiences — ready for next painting */}
-          <div id="experiences" className="flex flex-col items-center text-center scroll-mt-24">
-            <motion.button
-              type="button"
-              onClick={() => setActiveModal('experiences')}
-              whileHover={{ scale: 1.04, y: -6, rotate: 0 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: 'spring', stiffness: 360, damping: 22 }}
-              aria-label="Open experiences popup"
-              className="group relative mb-6 p-2 bg-white rounded-2xl border-[2.5px] border-dashed border-[#4F66BA] rotate-1 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F66BA]/50"
-              style={{ boxShadow: '5px 6px 0px #DCEEFF' }}
-            >
-              <div className="w-[220px] sm:w-[240px] aspect-[4/3] rounded-xl bg-[#F4F8FD] flex flex-col items-center justify-center gap-2.5 text-[#4F66BA] px-4">
-                <Briefcase size={34} strokeWidth={1.6} />
-                <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-[#5B6FA8]">
-                  sketch coming soon
-                </span>
-              </div>
-            </motion.button>
-
-            <h3 className="font-playfair font-bold text-[1.65rem] text-[#1E2A5E] leading-tight mb-1.5">
-              experiences
-            </h3>
-            <p className="text-[0.88rem] text-[#5B6FA8] mb-5 max-w-[230px]">
-              policy, consulting &amp; campus work!
-            </p>
-            <motion.button
-              type="button"
-              onClick={() => setActiveModal('experiences')}
-              whileHover={{ scale: 1.05, y: -1 }}
-              whileTap={{ scale: 0.96, y: 1 }}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-[#4F66BA] border-[2px] border-[#4F66BA] font-sans font-extrabold lowercase text-[0.95rem] tracking-[-0.01em] hover:bg-[#4F66BA] hover:text-white hover:border-[#2E4085] transition-colors cursor-pointer"
-              style={{ boxShadow: '3px 4px 0px #C7E4FA' }}
-            >
-              open experiences
-            </motion.button>
-          </div>
-
-          {/* 3. Interests — ready for next painting */}
-          <div id="interests" className="flex flex-col items-center text-center scroll-mt-24">
-            <motion.button
-              type="button"
-              onClick={() => setActiveModal('interests')}
-              whileHover={{ scale: 1.04, y: -6, rotate: 0 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: 'spring', stiffness: 360, damping: 22 }}
-              aria-label="Open interests popup"
-              className="group relative mb-6 p-2 bg-white rounded-2xl border-[2.5px] border-dashed border-[#4F66BA] -rotate-1 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F66BA]/50"
-              style={{ boxShadow: '5px 6px 0px #DCEEFF' }}
-            >
-              <div className="w-[220px] sm:w-[240px] aspect-[4/3] rounded-xl bg-[#F4F8FD] flex flex-col items-center justify-center gap-2.5 text-[#4F66BA] px-4">
-                <Sparkles size={34} strokeWidth={1.6} />
-                <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-[#5B6FA8]">
-                  sketch coming soon
-                </span>
-              </div>
-            </motion.button>
-
-            <h3 className="font-playfair font-bold text-[1.65rem] text-[#1E2A5E] leading-tight mb-1.5">
-              interests
-            </h3>
-            <p className="text-[0.88rem] text-[#5B6FA8] mb-5 max-w-[230px]">
-              when i&apos;m not on the grind :p
-            </p>
-            <motion.button
-              type="button"
-              onClick={() => setActiveModal('interests')}
-              whileHover={{ scale: 1.05, y: -1 }}
-              whileTap={{ scale: 0.96, y: 1 }}
-              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-[#4F66BA] border-[2px] border-[#4F66BA] font-sans font-extrabold lowercase text-[0.95rem] tracking-[-0.01em] hover:bg-[#4F66BA] hover:text-white hover:border-[#2E4085] transition-colors cursor-pointer"
-              style={{ boxShadow: '3px 4px 0px #C7E4FA' }}
-            >
-              open interests
-            </motion.button>
-          </div>
+        {/* 3 torn-paper graphite sketches (labels live directly on the drawings) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-14 items-center justify-items-center">
+          {SKETCH_CARDS.map((card) => (
+            <TornSketchCard
+              key={card.key}
+              id={card.id}
+              src={card.src}
+              alt={card.alt}
+              ariaLabel={card.ariaLabel}
+              variant={card.variant}
+              tiltClass={card.tiltClass}
+              onClick={() => setActiveModal(card.key)}
+            />
+          ))}
         </div>
       </div>
 
@@ -344,34 +276,18 @@ const Projects = () => {
               </button>
 
               <div className="overflow-y-auto px-6 sm:px-12 py-10 sm:py-12">
-                {/* Modal Top Icon + Centered Title */}
+                {/* Modal Top Torn Sketch Icon */}
                 <div className="flex flex-col items-center text-center pb-8 mb-10 border-b border-[#DCEEFF]">
-                  {activeModal === 'projects' && (
-                    <div
-                      className="w-[126px] sm:w-[144px] aspect-[4/3] p-1.5 bg-white rounded-2xl border-2 border-[#2E4085] -rotate-2 mb-4 overflow-hidden"
-                      style={{ boxShadow: '3px 4px 0px #9ED4F7' }}
-                    >
-                      <img
-                        src={projectsPaintingSrc}
-                        alt="Projects painting icon"
-                        className="w-full h-full object-cover rounded-xl block"
-                      />
-                    </div>
+                  {activeSketchCard && (
+                    <TornSketchCard
+                      src={activeSketchCard.src}
+                      alt={activeSketchCard.alt}
+                      variant={activeSketchCard.variant}
+                      tiltClass={activeSketchCard.tiltClass}
+                      compact
+                    />
                   )}
-                  {activeModal === 'experiences' && (
-                    <div className="w-16 h-16 rounded-2xl bg-[#EAF5FF] border-2 border-[#9ED4F7] text-[#4F66BA] flex items-center justify-center mb-4">
-                      <Briefcase size={28} strokeWidth={1.8} />
-                    </div>
-                  )}
-                  {activeModal === 'interests' && (
-                    <div className="w-16 h-16 rounded-2xl bg-[#EAF5FF] border-2 border-[#9ED4F7] text-[#4F66BA] flex items-center justify-center mb-4">
-                      <Sparkles size={28} strokeWidth={1.8} />
-                    </div>
-                  )}
-
-                  <h3 className="font-playfair font-bold text-[2.2rem] sm:text-[2.6rem] leading-none text-[#1E2A5E] tracking-tight">
-                    {activeModal}
-                  </h3>
+                  <h3 className="sr-only">{activeModal}</h3>
                 </div>
 
                 {/* Projects list — matching reference 2-column row layout */}

@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, Download, ExternalLink, X } from 'lucide-react';
+import { Download, ExternalLink, X, Mail } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Icon from './Icon';
+import AboutMeTitle from './AboutMeTitle';
 import resumePdf from '../assets/resume/SeoaMo_Resume.pdf';
+import headshotSrc from '../assets/images/seoa-headshot.jpg';
+import starSrc from '../assets/images/trinket-star.png';
 
 const About = () => {
   const [isCvOpen, setIsCvOpen] = useState(false);
@@ -19,136 +24,185 @@ const About = () => {
     };
   }, [isCvOpen]);
 
-  const skills = [
-    { name: 'Languages', value: 'Mandarin · Korean · English' },
-    { name: 'Design', value: 'Adobe Creative Suite · SwiftUI' },
-    { name: 'Technical', value: 'Python · SQL · R · Jira' },
-    { name: 'Office', value: 'Excel · PowerPoint · SAP' },
-    { name: 'Education', value: 'McMaster University · 2027' },
-    { name: 'Certificate', value: 'CFA Foundations · IBM H&OS' },
-  ];
-
   return (
-    <section id="about" className="px-6 md:px-16 py-20 md:py-32 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start relative overflow-hidden">
-      <div className="relative z-10">
-        <div className="flex items-center gap-6 mb-10">
-          <span className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-rust">About</span>
-          <div className="flex-1 h-px bg-border" />
-        </div>
-        <div className="text-[1rem] leading-[1.9] text-muted space-y-6">
-          <p>
-            I am a fourth-year <strong className="text-ink font-medium">Political Science, Specialization in Public Law and Judicial Studies and Minor in Economics</strong> student at McMaster University (graduating 2027). My academic background trains me to understand how institutions, incentives, and people interact.
-          </p>
-          <p>
-            Last summer I interned at <strong className="text-ink font-medium">KPMG Canada</strong> as a Management Consultant in Operations, under Healthcare Solutions, where I worked on a regional healthcare project to support the structural reform to improve the quality of care for patients. I also helped develop risk and mitigations for a provincial healthcare client. 
-          </p>
-          <p>
-            I am currently interning at the house of commons under Member of Parliament Aslam Rana <strong className="text-ink font-medium">, as a legislative & constituency assistant intern</strong>, responsible for legislative affairs, such as, researching & drafting committee questions, and completing casework at the grassroots level.
-          </p>
-          <p>
-            I am fluent in <strong className="text-ink font-medium">Mandarin and Korean</strong>, and comfortable with technical tools from Python and SQL to Adobe Creative Suite.
-          </p>
-        </div>
+    <section
+      id="about"
+      className="px-6 md:px-16 py-20 md:py-32 relative overflow-hidden"
+    >
+      <div className="relative z-10 max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12 md:gap-16 lg:gap-20">
+        {/* Left: Circular framed headshot in blue, navy & white */}
+        <div className="relative shrink-0">
+          {/* Subtle hand-drawn star accent */}
+          <img
+            src={starSrc}
+            alt=""
+            aria-hidden="true"
+            draggable="false"
+            className="pointer-events-none select-none absolute -top-5 -right-4 w-11 sm:w-12 h-auto rotate-12 opacity-90 z-10"
+          />
 
-        <div className="mt-10 flex flex-wrap items-center gap-6">
-          <button
-            type="button"
-            onClick={() => setIsCvOpen(true)}
-            className="inline-flex items-center gap-2.5 font-mono text-[0.72rem] uppercase tracking-[0.12em] text-ink border border-ink px-5 py-3 bg-transparent transition-colors hover:bg-rust hover:border-rust hover:text-cream cursor-pointer"
-          >
-            <FileText size={14} />
-            View CV / Resume
-          </button>
-
-          <a
-            href={resumePdf}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.1em] text-muted no-underline border-b border-border pb-1 transition-colors hover:text-rust hover:border-rust"
-          >
-            Open in new tab
-            <ExternalLink size={12} />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative z-10">
-        <div className="flex items-center gap-6 mb-10">
-          <span className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-rust">Skills</span>
-          <div className="flex-1 h-px bg-border" />
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2">
-          {skills.map((skill, index) => (
-            <div 
-              key={index} 
-              className={`p-6 border-b border-border ${index % 2 === 0 ? 'sm:border-r' : ''}`}
-            >
-              <p className="font-mono text-[0.7rem] uppercase tracking-[0.1em] text-muted mb-2">{skill.name}</p>
-              <p className="font-playfair text-[1rem] text-ink">{skill.value}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* CV Preview Modal */}
-      {isCvOpen && (
-        <div
-          className="fixed inset-0 z-[200] flex items-center justify-center bg-ink/60 backdrop-blur-sm p-4 sm:p-8"
-          onClick={() => setIsCvOpen(false)}
-        >
           <div
-            className="relative w-full max-w-4xl h-[85vh] bg-cream border border-border flex flex-col shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
+            className="w-[240px] h-[240px] sm:w-[290px] sm:h-[290px] md:w-[320px] md:h-[320px] rounded-full p-2 bg-white border-[5px] border-[#4F66BA] overflow-hidden"
+            style={{
+              boxShadow: '6px 7px 0px #9ED4F7, 0 12px 30px rgba(30, 42, 94, 0.12)',
+            }}
           >
-            <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-cream">
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-rust">
-                  Curriculum Vitae
-                </span>
-                <span className="font-playfair text-[0.95rem] text-ink hidden sm:inline">
-                  — Seoa Mo
-                </span>
-              </div>
+            <img
+              src={headshotSrc}
+              alt="Seoa Mo headshot"
+              draggable="false"
+              className="w-full h-full rounded-full object-cover object-center block"
+            />
+          </div>
+        </div>
 
-              <div className="flex items-center gap-5">
-                <a
-                  href={resumePdf}
-                  download="SeoaMo_Resume.pdf"
-                  className="inline-flex items-center gap-1.5 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-muted no-underline transition-colors hover:text-rust"
-                >
-                  <Download size={13} />
-                  Download
-                </a>
-                <a
-                  href={resumePdf}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-muted no-underline transition-colors hover:text-rust"
-                >
-                  <ExternalLink size={13} />
-                  New Tab
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setIsCvOpen(false)}
-                  aria-label="Close CV preview"
-                  className="text-muted hover:text-rust transition-colors p-1 cursor-pointer"
-                >
-                  <X size={18} />
-                </button>
-              </div>
-            </div>
+        {/* Right: Animated About Me title, Resume pill + circular social buttons, simple bio */}
+        <div className="flex flex-col items-center md:items-start text-center md:text-left max-w-[460px]">
+          <AboutMeTitle className="-ml-1 mb-4" />
 
-            <div className="flex-1 w-full bg-ink/5 relative">
-              <iframe
-                src={resumePdf}
-                title="Seoa Mo Resume"
-                className="w-full h-full border-0"
-              />
+          {/* Resume pill + circular GitHub, LinkedIn, Email icons (blue, navy blue, white) */}
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mb-7">
+            <motion.button
+              type="button"
+              onClick={() => setIsCvOpen(true)}
+              whileHover={{ scale: 1.05, y: -1 }}
+              whileTap={{ scale: 0.96, y: 1 }}
+              transition={{ type: 'spring', stiffness: 420, damping: 24 }}
+              className="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-[#4F66BA] text-white border-[2.5px] border-[#1E2A5E] font-sans font-extrabold lowercase text-[1.02rem] leading-none tracking-[-0.01em] hover:bg-[#3F55A8] transition-colors cursor-pointer"
+              style={{ boxShadow: '3px 4px 0px #9ED4F7' }}
+            >
+              resume!
+            </motion.button>
+
+            <motion.a
+              href="https://github.com/moseoa"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              whileHover={{ scale: 1.08, y: -1 }}
+              whileTap={{ scale: 0.95, y: 1 }}
+              className="w-11 h-11 rounded-full bg-white text-[#1E2A5E] border-[2.5px] border-[#1E2A5E] hover:bg-[#4F66BA] hover:text-white transition-colors inline-flex items-center justify-center"
+              style={{ boxShadow: '2.5px 3.5px 0px #9ED4F7' }}
+            >
+              <Icon name="github" size={20} />
+            </motion.a>
+
+            <motion.a
+              href="https://www.linkedin.com/in/seoamo/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              whileHover={{ scale: 1.08, y: -1 }}
+              whileTap={{ scale: 0.95, y: 1 }}
+              className="w-11 h-11 rounded-full bg-white text-[#1E2A5E] border-[2.5px] border-[#1E2A5E] hover:bg-[#4F66BA] hover:text-white transition-colors inline-flex items-center justify-center"
+              style={{ boxShadow: '2.5px 3.5px 0px #9ED4F7' }}
+            >
+              <Icon name="linkedin" size={20} />
+            </motion.a>
+
+            <motion.a
+              href="mailto:inquiriesseoamo@gmail.com"
+              aria-label="Email Seoa"
+              whileHover={{ scale: 1.08, y: -1 }}
+              whileTap={{ scale: 0.95, y: 1 }}
+              className="w-11 h-11 rounded-full bg-white text-[#1E2A5E] border-[2.5px] border-[#1E2A5E] hover:bg-[#4F66BA] hover:text-white transition-colors inline-flex items-center justify-center"
+              style={{ boxShadow: '2.5px 3.5px 0px #9ED4F7' }}
+            >
+              <Mail size={19} strokeWidth={2.3} />
+            </motion.a>
+          </div>
+
+          {/* Super simple, clean intro & add-ons matching reference layout */}
+          <div className="text-[1.02rem] leading-[1.8] text-[#3A4A7C] space-y-4">
+            <p>
+              hey! i&apos;m seoa, a{' '}
+              <strong className="font-semibold text-[#1E2A5E]">
+                fourth-year political science student @ mcmaster university
+              </strong>{' '}
+              specializing in public law &amp; judicial studies. thanks for stopping by my sketchbook!
+            </p>
+
+            <div className="pt-1">
+              <p className="italic text-[#5B6FA8] mb-2">add-ons:</p>
+              <ul className="list-none space-y-1.5 font-medium text-[#1E2A5E]">
+                <li>✦ minor in economics</li>
+                <li>✦ former kpmg canada consulting intern · currently @ the house of commons</li>
+                <li>✦ fluent in mandarin, korean &amp; english</li>
+              </ul>
             </div>
           </div>
         </div>
-      )}
+      </div>
+
+      {/* Inline CV / Resume Preview Modal */}
+      <AnimatePresence>
+        {isCvOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-[#1E2A5E]/60 backdrop-blur-sm p-4 sm:p-8"
+            onClick={() => setIsCvOpen(false)}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 8 }}
+              transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+              className="relative w-full max-w-4xl h-[85vh] bg-white rounded-2xl border-2 border-[#4F66BA] flex flex-col shadow-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between px-6 py-4 border-b border-[#DCEEFF] bg-[#F4F8FD]">
+                <div className="flex items-center gap-3">
+                  <span className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-[#4F66BA] font-medium">
+                    Curriculum Vitae
+                  </span>
+                  <span className="font-playfair text-[0.95rem] text-[#1E2A5E] hidden sm:inline">
+                    — Seoa Mo
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-5">
+                  <a
+                    href={resumePdf}
+                    download="SeoaMo_Resume.pdf"
+                    className="inline-flex items-center gap-1.5 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-[#3A4A7C] no-underline transition-colors hover:text-[#4F66BA]"
+                  >
+                    <Download size={13} />
+                    Download
+                  </a>
+                  <a
+                    href={resumePdf}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-[#3A4A7C] no-underline transition-colors hover:text-[#4F66BA]"
+                  >
+                    <ExternalLink size={13} />
+                    New Tab
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setIsCvOpen(false)}
+                    aria-label="Close CV preview"
+                    className="w-8 h-8 rounded-full bg-white text-[#1E2A5E] border border-[#C7E4FA] hover:bg-[#4F66BA] hover:text-white hover:border-[#1E2A5E] transition-colors inline-flex items-center justify-center cursor-pointer"
+                  >
+                    <X size={16} />
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex-1 w-full bg-[#EAF3FB]/40 relative">
+                <iframe
+                  src={resumePdf}
+                  title="Seoa Mo Resume"
+                  className="w-full h-full border-0"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronDown } from 'lucide-react';
 import { PEARL_ASCII, LANGUAGES_BG_ASCII } from '../assets/data/ascii';
 import SketchbookTitle from './SketchbookTitle';
+import FloatingTrinkets from './FloatingTrinkets';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -57,7 +58,7 @@ const Hero = () => {
   ];
 
   return (
-    <section 
+    <section
       id="home"
       ref={box}
       className="min-h-screen relative flex flex-col items-center justify-center pt-20 md:pt-24 pb-24 overflow-x-hidden bg-cream"
@@ -71,14 +72,17 @@ const Hero = () => {
         ))}
       </div>
 
+      {/* Scattered Interactive Floating Trinkets */}
+      <FloatingTrinkets />
+
       <div className="relative z-[1] flex flex-col items-center text-center gap-12 px-8">
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
           className="font-mono text-[0.7rem] uppercase tracking-[0.25em] text-rust"
         >
-          Portfolio — 2026
+
         </motion.p>
 
         <div className="relative leading-none flex items-center justify-center">
@@ -94,13 +98,13 @@ const Hero = () => {
           </div>
         </div>
 
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 1 }}
           className="text-[1.05rem] leading-[1.9] text-muted max-w-[520px]"
         >
-          I am a Fourth-Year Political Science Student specializing in Public Law & Judicial Studies at McMaster University. I am passionate about Public Policy and how judicial systems can impact rights-related issues. I am currently on a team of 3 academics and professionals in the United Nations-Canada called I3 Alliance, where we are researching digital infrastructures that could decrease human trafficking. A lot of my work is rooted in my passion for technology and the use cases that exist with it, combined with my interest in Access to Justice and Access to Care. 
+          I am a Fourth-Year Political Science Student specializing in Public Law & Judicial Studies at McMaster University. I am passionate about Public Policy and how judicial systems can impact rights-related issues. I am currently on a team of 3 academics and professionals in the United Nations-Canada called I3 Alliance, where we are researching digital infrastructures that could decrease human trafficking. A lot of my work is rooted in my passion for technology and the use cases that exist with it, combined with my interest in Access to Justice and Access to Care.
         </motion.p>
 
         <div className="flex gap-16 items-center justify-center flex-wrap opacity-0 animate-[fadeUp_0.9s_ease_1.05s_forwards]">
@@ -121,7 +125,7 @@ const Hero = () => {
           ))}
         </div>
 
-        <motion.a 
+        <motion.a
           href="#projects"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

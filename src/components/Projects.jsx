@@ -1,17 +1,21 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
+import { X, ArrowUpRight, Briefcase, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PROJECTS_BG_ASCII } from '../assets/data/ascii';
+import MySketchesTitle from './MySketchesTitle';
+import projectsPaintingSrc from '../assets/images/projects-painting.jpg';
 
 const projects = [
   {
     id: 1,
-    title: 'Does a Threshold-Based Diagnostic Consistency Framework for Women\'s Health Exist Within Family Physician Training in Canada?',
+    title:
+      "Does a Threshold-Based Diagnostic Consistency Framework for Women's Health Exist Within Family Physician Training in Canada?",
     type: 'Research / Policy',
     subtitle: 'Scoping Review',
     desc: 'Health Policy Work',
-    tags: ['Health Policy', 'Women\'s Health', 'Family Physician Training'],
+    tags: ['Health Policy', "Women's Health", 'Family Physician Training'],
     link: 'https://familymed.my.canva.site',
-    visualClass: 'healthpolicy-bg',
-    isHealthPolicy: true
+    isHealthPolicy: true,
   },
   {
     id: 2,
@@ -21,19 +25,17 @@ const projects = [
     desc: 'A cryptographic iOS password manager that transforms physical lava lamp entropy into secure passwords and 2FA codes. I owned branding, UX/UI design, and product direction — driving ideation to a deployable build in under 24 hours.',
     tags: ['Swift / SwiftUI', 'UX/UI Design', 'Branding', 'AWS', 'Gemini API'],
     link: 'https://devpost.com/software/lavalock',
-    visualClass: 'lavalock-bg',
-    isLava: true
+    isLava: true,
   },
   {
     id: 3,
     title: 'TeX-it',
     type: 'Hackathon / Product',
     subtitle: 'HackDaysinthe6ix · 2026',
-    desc: 'An AI-powered LaTeX IDE where users can write documents using voice, files, or images of handwritten content. Powered by Deepgram speech-to-text and Gemini, it turns natural input into clean LaTeX. — driving ideation to a deployable build in under 8 hours.',
+    desc: 'An AI-powered LaTeX IDE where users can write documents using voice, files, or images of handwritten content. Powered by Deepgram speech-to-text and Gemini, it turns natural input into clean LaTeX — driving ideation to a deployable build in under 8 hours.',
     tags: ['deepgram', 'electron', 'gemini', 'go', 'react.js', 'typescript'],
     link: 'https://devpost.com/software/ltexch',
-    visualClass: 'texit-bg',
-    isTexit: true
+    isTexit: true,
   },
   {
     id: 4,
@@ -41,106 +43,149 @@ const projects = [
     type: 'Content Strategy / Visual Design',
     subtitle: 'Communications Assistant · McMaster Student Recruitment · 2025–Present',
     desc: "Launched and scaled McMaster's first Chinese social media presence on RedNote (小红书) from zero. I taught myself Adobe Illustrator in one month and shipped real client-facing work — city-specific event posters.",
-    tags: ['Adobe Creative Suite', 'Adobe Illustrator', 'Adobe Premiere Pro', 'Content Strategy', 'Data Analytics', 'Mandarin'],
+    tags: [
+      'Adobe Creative Suite',
+      'Adobe Illustrator',
+      'Adobe Premiere Pro',
+      'Content Strategy',
+      'Data Analytics',
+      'Mandarin',
+    ],
     link: 'https://www.canva.com/design/DAHCMni_xlo/wB3IpNEtiJJmz8yHET0ooQ/edit?utm_content=DAHCMni_xlo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton',
     stats: '1.2k followers · 345% engagement growth · 1 month to ship',
-    visualClass: 'rednote-bg',
-    isRedNote: true
-  }
+    isRedNote: true,
+  },
 ];
 
-const ProjectCard = ({ project }) => {
-  const cardRef = useRef(null);
+const experiences = [
+  {
+    id: 1,
+    role: 'Legislative & Constituency Assistant Intern',
+    org: 'House of Commons · Office of MP Aslam Rana',
+    period: '2026 · Ottawa / Hamilton',
+    desc: 'Supporting legislative affairs including researching and drafting committee questions, policy briefs, and constituency casework at the grassroots level.',
+  },
+  {
+    id: 2,
+    role: 'Management Consultant Intern — Operations (Healthcare Solutions)',
+    org: 'KPMG Canada',
+    period: 'Summer 2025 · Toronto',
+    desc: 'Worked on a regional healthcare structural reform engagement to improve patient care quality and helped develop risk and mitigation frameworks for a provincial healthcare client.',
+  },
+  {
+    id: 3,
+    role: 'Communications Assistant',
+    org: 'McMaster University Student Recruitment',
+    period: '2025–Present · Hamilton',
+    desc: "Launched and scaled McMaster's first Chinese social media presence on RedNote (小红书), creating city-specific event visuals and content strategy.",
+  },
+];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('opacity-100', 'translate-y-0');
-        }
-      });
-    }, { threshold: 0.15 });
+const interests = [
+  {
+    id: 1,
+    title: 'Painting & Sketching',
+    meta: 'Visual Art',
+    desc: 'Acrylic paintings, pencil doodles, and hand-drawn sketches — including the artwork and animated titles throughout this sketchbook.',
+  },
+  {
+    id: 2,
+    title: 'Outdoors & Mountain Trails',
+    meta: 'Adventure',
+    desc: 'Hiking alpine passes, via ferrata climbing, and exploring the Canadian Rockies whenever I get the chance.',
+  },
+  {
+    id: 3,
+    title: 'Access to Justice & Public Policy',
+    meta: 'Policy × Tech',
+    desc: 'Exploring how technology, digital infrastructure, and thoughtful policy can expand access to justice and access to care.',
+  },
+];
 
-    if (cardRef.current) observer.observe(cardRef.current);
-    return () => observer.disconnect();
-  }, []);
+const ProjectPreviewCard = ({ project }) => (
+  <div className="w-full md:w-[43%] shrink-0">
+    <div className="relative aspect-[16/11] w-full rounded-2xl border-[2px] border-[#1E2A5E] bg-[#1A1D2E] overflow-hidden flex items-center justify-center -rotate-1 hover:rotate-0 transition-transform duration-300 shadow-[4px_5px_0_#C7E4FA]">
+      {project.isLava && (
+        <>
+          <div className="absolute inset-0 bg-[#181210]" />
+          <div className="absolute rounded-full blur-[34px] animate-[float_6s_ease-in-out_infinite] w-[140px] h-[170px] bg-[radial-gradient(circle,#C4440A,#7A1A00)] top-[10%] left-[20%]" />
+          <div className="absolute rounded-full blur-[34px] animate-[float_6s_ease-in-out_infinite] w-[110px] h-[130px] bg-[radial-gradient(circle,#E8620A,#C4440A)] top-[45%] left-[42%] delay-[-2s]" />
+          <div className="absolute rounded-full blur-[34px] animate-[float_6s_ease-in-out_infinite] w-[85px] h-[105px] bg-[radial-gradient(circle,#C9A84C,#8A6A1A)] top-[58%] left-[18%] delay-[-4s]" />
+        </>
+      )}
 
-  return (
-    <div 
-      ref={cardRef}
-      className="grid grid-cols-1 md:grid-cols-2 gap-0 border border-border mb-12 opacity-0 translate-y-[30px] transition-all duration-700 ease-out even:md:flex-row-reverse"
-    >
-      <div className={`min-h-[300px] md:min-h-[480px] flex items-center justify-center overflow-hidden relative ${project.visualClass}`}>
-        {project.isLava && (
-          <>
-            <div className="absolute rounded-full blur-[40px] animate-[float_6s_ease-in-out_infinite] w-[180px] h-[220px] bg-[radial-gradient(circle,#C4440A,#7A1A00)] top-[15%] left-[25%]" />
-            <div className="absolute rounded-full blur-[40px] animate-[float_6s_ease-in-out_infinite] w-[140px] h-[160px] bg-[radial-gradient(circle,#E8620A,#C4440A)] top-[50%] left-[40%] delay-[-2s]" />
-            <div className="absolute rounded-full blur-[40px] animate-[float_6s_ease-in-out_infinite] w-[100px] h-[130px] bg-[radial-gradient(circle,#C9A84C,#8A6A1A)] top-[65%] left-[20%] delay-[-4s]" />
-          </>
-        )}
-        {project.isRedNote && (
-          <>
-            <div className="absolute w-full h-full bg-[#FE2C55]/10" />
-            <div className="absolute rounded-full blur-[50px] animate-[float_8s_ease-in-out_infinite] w-[250px] h-[250px] bg-[#FE2C55]/20 top-[10%] left-[-10%]" />
-            <div className="absolute rounded-full blur-[60px] animate-[float_10s_ease-in-out_infinite] w-[300px] h-[300px] bg-[#ffffff]/40 bottom-[-15%] right-[-10%] delay-[-3s]" />
-            <div className="absolute w-[150%] h-[1px] bg-white/20 rotate-45 top-[20%] left-[-25%]" />
-            <div className="absolute w-[150%] h-[1px] bg-white/20 rotate-45 top-[40%] left-[-25%]" />
-            <div className="absolute w-[150%] h-[1px] bg-white/20 rotate-45 top-[60%] left-[-25%]" />
-          </>
-        )}
-        {project.isHealthPolicy && (
-          <>
-            <div className="absolute w-full h-full bg-[#0F766E]/10" />
-            <div className="absolute rounded-full blur-[50px] animate-[float_8s_ease-in-out_infinite] w-[250px] h-[250px] bg-[#0F766E]/20 top-[10%] left-[-10%]" />
-            <div className="absolute rounded-full blur-[60px] animate-[float_10s_ease-in-out_infinite] w-[300px] h-[300px] bg-[#0EA5E9]/20 bottom-[-15%] right-[-10%] delay-[-3s]" />
-            <div className="absolute w-[150%] h-[1px] bg-white/10 rotate-12 top-[20%] left-[-25%]" />
-            <div className="absolute w-[150%] h-[1px] bg-white/10 rotate-12 top-[40%] left-[-25%]" />
-            <div className="absolute w-[150%] h-[1px] bg-white/10 rotate-12 top-[60%] left-[-25%]" />
-            <div className="absolute w-[150%] h-[1px] bg-white/10 rotate-12 top-[80%] left-[-25%]" />
-          </>
-        )}
-        <div className={`z-10 font-playfair text-2xl drop-shadow-lg px-8 text-center ${project.isRedNote ? 'text-rust' : 'text-white'}`}>{project.title}</div>
-      </div>
+      {project.isRedNote && (
+        <>
+          <div className="absolute inset-0 bg-[#FFF4F6]" />
+          <div className="absolute rounded-full blur-[40px] animate-[float_8s_ease-in-out_infinite] w-[200px] h-[200px] bg-[#FE2C55]/25 top-[-10%] left-[-10%]" />
+          <div className="absolute rounded-full blur-[45px] animate-[float_10s_ease-in-out_infinite] w-[220px] h-[220px] bg-[#FFB3C1]/35 bottom-[-20%] right-[-10%] delay-[-3s]" />
+          <div className="absolute w-[150%] h-[1px] bg-[#FE2C55]/15 rotate-45 top-[25%] left-[-25%]" />
+          <div className="absolute w-[150%] h-[1px] bg-[#FE2C55]/15 rotate-45 top-[55%] left-[-25%]" />
+        </>
+      )}
 
-      <div className="p-8 md:p-14 flex flex-col justify-center bg-cream">
-        <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-rust mb-6">
-          {project.id.toString().padStart(2, '0')} — {project.type}
-        </p>
-        <h2 className="font-playfair text-[2.2rem] leading-[1.15] tracking-[-0.02em] mb-4 text-ink">
-          {project.title}
-        </h2>
-        <p className="font-mono text-[0.7rem] uppercase tracking-[0.1em] text-muted mb-6">
-          {project.subtitle}
-        </p>
-        <p className="text-[0.95rem] leading-[1.85] text-muted mb-8">
-          {project.desc}
-        </p>
-        
-        <div className="flex flex-wrap gap-2 mb-8">
-          {project.tags.map(tag => (
-            <span key={tag} className="font-mono text-[0.65rem] uppercase tracking-[0.1em] px-3.5 py-1.5 border border-border text-muted">
-              {tag}
-            </span>
-          ))}
-        </div>
+      {project.isHealthPolicy && (
+        <>
+          <div className="absolute inset-0 bg-[#0D2B30]" />
+          <div className="absolute rounded-full blur-[40px] animate-[float_8s_ease-in-out_infinite] w-[200px] h-[200px] bg-[#0F766E]/40 top-[-5%] left-[-10%]" />
+          <div className="absolute rounded-full blur-[45px] animate-[float_10s_ease-in-out_infinite] w-[220px] h-[220px] bg-[#0EA5E9]/30 bottom-[-15%] right-[-10%] delay-[-3s]" />
+          <div className="absolute w-[150%] h-[1px] bg-white/10 rotate-12 top-[25%] left-[-25%]" />
+          <div className="absolute w-[150%] h-[1px] bg-white/10 rotate-12 top-[55%] left-[-25%]" />
+          <div className="absolute w-[150%] h-[1px] bg-white/10 rotate-12 top-[80%] left-[-25%]" />
+        </>
+      )}
 
-        {project.stats && (
-          <p className="font-mono text-[0.7rem] uppercase tracking-[0.1em] text-rust mb-8">
-            {project.stats}
-          </p>
-        )}
+      {project.isTexit && (
+        <>
+          <div className="absolute inset-0 bg-[#1B254B]" />
+          <div className="absolute rounded-full blur-[40px] animate-[float_7s_ease-in-out_infinite] w-[190px] h-[190px] bg-[#4F66BA]/45 top-[-10%] right-[-10%]" />
+          <div className="absolute rounded-full blur-[45px] animate-[float_9s_ease-in-out_infinite] w-[200px] h-[200px] bg-[#8DD3F4]/30 bottom-[-20%] left-[-10%] delay-[-2s]" />
+          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#9ED4F7_1px,transparent_1px)] [background-size:16px_16px]" />
+        </>
+      )}
 
-        <a href={project.link || '#'} className="inline-flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.1em] text-ink no-underline border-b border-ink pb-1 transition-colors hover:text-rust hover:border-rust w-fit">
-          View Work →
-        </a>
+      <div
+        className={`relative z-10 font-playfair font-bold text-lg sm:text-xl leading-snug px-6 text-center drop-shadow ${
+          project.isRedNote ? 'text-rust' : 'text-white'
+        }`}
+      >
+        {project.title.length > 52 ? `${project.title.slice(0, 52)}…` : project.title}
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 const Projects = () => {
+  const [activeModal, setActiveModal] = useState(null); // 'projects' | 'experiences' | 'interests' | null
+
+  useEffect(() => {
+    const onOpenModal = (e) => {
+      if (e.detail && ['projects', 'experiences', 'interests'].includes(e.detail)) {
+        setActiveModal(e.detail);
+      }
+    };
+    window.addEventListener('open-sketch-modal', onOpenModal);
+    return () => window.removeEventListener('open-sketch-modal', onOpenModal);
+  }, []);
+
+  useEffect(() => {
+    if (!activeModal) return undefined;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setActiveModal(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [activeModal]);
+
   return (
-    <section id="projects" className="px-6 md:px-16 py-20 md:py-32 border-t border-border relative overflow-hidden bg-cream">
+    <section
+      id="projects"
+      className="px-6 md:px-16 py-20 md:py-28 border-t border-border relative overflow-hidden bg-cream"
+    >
       {/* Background ASCII Art */}
       <div className="absolute top-0 left-0 w-[150%] h-full pointer-events-none select-none opacity-[0.05] overflow-hidden flex flex-wrap content-start z-0">
         {Array.from({ length: 100 }).map((_, i) => (
@@ -150,16 +195,305 @@ const Projects = () => {
         ))}
       </div>
 
-      <div className="relative z-10">
-        <div className="flex items-center gap-6 mb-16">
-          <span className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-rust">Selected Work</span>
-          <div className="flex-1 h-px bg-border" />
+      <div className="relative z-10 max-w-5xl mx-auto">
+        {/* Animated handwritten "my sketches" header */}
+        <div className="flex flex-col items-center text-center mb-14 md:mb-16">
+          <MySketchesTitle />
+          <p className="mt-2 font-mono text-[0.7rem] uppercase tracking-[0.2em] text-[#5B6FA8]">
+            press a sketch to open
+          </p>
         </div>
-        
-        {projects.map(project => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
+
+        {/* 3-column sketchbook icon menu (matching "main course" layout) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-14 items-end">
+          {/* 1. Projects — hand-painted artwork icon */}
+          <div className="flex flex-col items-center text-center">
+            <motion.button
+              type="button"
+              onClick={() => setActiveModal('projects')}
+              whileHover={{ scale: 1.04, y: -6, rotate: 0 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: 'spring', stiffness: 360, damping: 22 }}
+              aria-label="Open projects popup"
+              className="group relative mb-6 p-2 bg-white rounded-2xl border-[2.5px] border-[#2E4085] -rotate-2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F66BA]/50"
+              style={{ boxShadow: '5px 6px 0px #9ED4F7' }}
+            >
+              <div className="w-[220px] sm:w-[240px] aspect-[4/3] overflow-hidden rounded-xl bg-[#EAF3FB]">
+                <img
+                  src={projectsPaintingSrc}
+                  alt="Seoa's acrylic painting — Projects"
+                  draggable="false"
+                  className="w-full h-full object-cover block transition-transform duration-500 group-hover:scale-[1.04]"
+                />
+              </div>
+            </motion.button>
+
+            <h3 className="font-playfair font-bold text-[1.65rem] text-[#1E2A5E] leading-tight mb-1.5">
+              projects
+            </h3>
+            <p className="text-[0.88rem] text-[#5B6FA8] mb-5 max-w-[230px]">
+              things i&apos;ve built, researched &amp; designed!
+            </p>
+            <motion.button
+              type="button"
+              onClick={() => setActiveModal('projects')}
+              whileHover={{ scale: 1.05, y: -1 }}
+              whileTap={{ scale: 0.96, y: 1 }}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#4F66BA] text-white border-[2px] border-[#2E4085] font-sans font-extrabold lowercase text-[0.95rem] tracking-[-0.01em] hover:bg-[#3F55A8] transition-colors cursor-pointer"
+              style={{ boxShadow: '3px 4px 0px #9ED4F7' }}
+            >
+              open projects
+            </motion.button>
+          </div>
+
+          {/* 2. Experiences — ready for next painting */}
+          <div id="experiences" className="flex flex-col items-center text-center scroll-mt-24">
+            <motion.button
+              type="button"
+              onClick={() => setActiveModal('experiences')}
+              whileHover={{ scale: 1.04, y: -6, rotate: 0 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: 'spring', stiffness: 360, damping: 22 }}
+              aria-label="Open experiences popup"
+              className="group relative mb-6 p-2 bg-white rounded-2xl border-[2.5px] border-dashed border-[#4F66BA] rotate-1 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F66BA]/50"
+              style={{ boxShadow: '5px 6px 0px #DCEEFF' }}
+            >
+              <div className="w-[220px] sm:w-[240px] aspect-[4/3] rounded-xl bg-[#F4F8FD] flex flex-col items-center justify-center gap-2.5 text-[#4F66BA] px-4">
+                <Briefcase size={34} strokeWidth={1.6} />
+                <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-[#5B6FA8]">
+                  sketch coming soon
+                </span>
+              </div>
+            </motion.button>
+
+            <h3 className="font-playfair font-bold text-[1.65rem] text-[#1E2A5E] leading-tight mb-1.5">
+              experiences
+            </h3>
+            <p className="text-[0.88rem] text-[#5B6FA8] mb-5 max-w-[230px]">
+              policy, consulting &amp; campus work!
+            </p>
+            <motion.button
+              type="button"
+              onClick={() => setActiveModal('experiences')}
+              whileHover={{ scale: 1.05, y: -1 }}
+              whileTap={{ scale: 0.96, y: 1 }}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-[#4F66BA] border-[2px] border-[#4F66BA] font-sans font-extrabold lowercase text-[0.95rem] tracking-[-0.01em] hover:bg-[#4F66BA] hover:text-white hover:border-[#2E4085] transition-colors cursor-pointer"
+              style={{ boxShadow: '3px 4px 0px #C7E4FA' }}
+            >
+              open experiences
+            </motion.button>
+          </div>
+
+          {/* 3. Interests — ready for next painting */}
+          <div id="interests" className="flex flex-col items-center text-center scroll-mt-24">
+            <motion.button
+              type="button"
+              onClick={() => setActiveModal('interests')}
+              whileHover={{ scale: 1.04, y: -6, rotate: 0 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: 'spring', stiffness: 360, damping: 22 }}
+              aria-label="Open interests popup"
+              className="group relative mb-6 p-2 bg-white rounded-2xl border-[2.5px] border-dashed border-[#4F66BA] -rotate-1 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F66BA]/50"
+              style={{ boxShadow: '5px 6px 0px #DCEEFF' }}
+            >
+              <div className="w-[220px] sm:w-[240px] aspect-[4/3] rounded-xl bg-[#F4F8FD] flex flex-col items-center justify-center gap-2.5 text-[#4F66BA] px-4">
+                <Sparkles size={34} strokeWidth={1.6} />
+                <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-[#5B6FA8]">
+                  sketch coming soon
+                </span>
+              </div>
+            </motion.button>
+
+            <h3 className="font-playfair font-bold text-[1.65rem] text-[#1E2A5E] leading-tight mb-1.5">
+              interests
+            </h3>
+            <p className="text-[0.88rem] text-[#5B6FA8] mb-5 max-w-[230px]">
+              when i&apos;m not on the grind :p
+            </p>
+            <motion.button
+              type="button"
+              onClick={() => setActiveModal('interests')}
+              whileHover={{ scale: 1.05, y: -1 }}
+              whileTap={{ scale: 0.96, y: 1 }}
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-[#4F66BA] border-[2px] border-[#4F66BA] font-sans font-extrabold lowercase text-[0.95rem] tracking-[-0.01em] hover:bg-[#4F66BA] hover:text-white hover:border-[#2E4085] transition-colors cursor-pointer"
+              style={{ boxShadow: '3px 4px 0px #C7E4FA' }}
+            >
+              open interests
+            </motion.button>
+          </div>
+        </div>
       </div>
+
+      {/* Popup Modal (Projects / Experiences / Interests) */}
+      <AnimatePresence>
+        {activeModal && (
+          <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${activeModal} list`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.22 }}
+            onClick={() => setActiveModal(null)}
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-[#1E2A5E]/50 backdrop-blur-[3px] p-4 sm:p-8"
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.94, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ type: 'spring', stiffness: 360, damping: 28 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-4xl max-h-[88vh] bg-[#FBF9F4] rounded-3xl border-[2.5px] border-[#4F66BA] shadow-2xl flex flex-col overflow-hidden"
+            >
+              {/* Circular close button top-right */}
+              <button
+                type="button"
+                onClick={() => setActiveModal(null)}
+                aria-label={`Close ${activeModal} popup`}
+                className="absolute top-5 right-5 z-20 w-10 h-10 inline-flex items-center justify-center rounded-full bg-white/90 text-[#1E2A5E] border border-[#C7E4FA] hover:bg-[#4F66BA] hover:text-white hover:border-[#2E4085] transition-colors cursor-pointer shadow-sm"
+              >
+                <X size={18} strokeWidth={2.2} />
+              </button>
+
+              <div className="overflow-y-auto px-6 sm:px-12 py-10 sm:py-12">
+                {/* Modal Top Icon + Centered Title */}
+                <div className="flex flex-col items-center text-center pb-8 mb-10 border-b border-[#DCEEFF]">
+                  {activeModal === 'projects' && (
+                    <div
+                      className="w-[126px] sm:w-[144px] aspect-[4/3] p-1.5 bg-white rounded-2xl border-2 border-[#2E4085] -rotate-2 mb-4 overflow-hidden"
+                      style={{ boxShadow: '3px 4px 0px #9ED4F7' }}
+                    >
+                      <img
+                        src={projectsPaintingSrc}
+                        alt="Projects painting icon"
+                        className="w-full h-full object-cover rounded-xl block"
+                      />
+                    </div>
+                  )}
+                  {activeModal === 'experiences' && (
+                    <div className="w-16 h-16 rounded-2xl bg-[#EAF5FF] border-2 border-[#9ED4F7] text-[#4F66BA] flex items-center justify-center mb-4">
+                      <Briefcase size={28} strokeWidth={1.8} />
+                    </div>
+                  )}
+                  {activeModal === 'interests' && (
+                    <div className="w-16 h-16 rounded-2xl bg-[#EAF5FF] border-2 border-[#9ED4F7] text-[#4F66BA] flex items-center justify-center mb-4">
+                      <Sparkles size={28} strokeWidth={1.8} />
+                    </div>
+                  )}
+
+                  <h3 className="font-playfair font-bold text-[2.2rem] sm:text-[2.6rem] leading-none text-[#1E2A5E] tracking-tight">
+                    {activeModal}
+                  </h3>
+                </div>
+
+                {/* Projects list — matching reference 2-column row layout */}
+                {activeModal === 'projects' && (
+                  <div className="flex flex-col divide-y divide-[#DCEEFF]">
+                    {projects.map((project, idx) => (
+                      <article
+                        key={project.id}
+                        className={`flex flex-col md:flex-row items-center gap-8 md:gap-10 ${
+                          idx === 0 ? 'pb-10' : 'py-10'
+                        }`}
+                      >
+                        <ProjectPreviewCard project={project} />
+
+                        <div className="flex-1 flex flex-col items-start text-left">
+                          <p className="text-[0.8rem] text-[#5B6FA8] mb-2">
+                            {project.type} · {project.subtitle}
+                          </p>
+                          <h4 className="font-playfair font-bold text-[1.55rem] sm:text-[1.85rem] leading-[1.2] text-[#1E2A5E] mb-3">
+                            {project.title}
+                          </h4>
+                          <p className="text-[0.95rem] leading-[1.75] text-[#3A4A7C] mb-4">
+                            {project.desc}
+                          </p>
+
+                          {project.stats && (
+                            <p className="font-mono text-[0.68rem] uppercase tracking-[0.12em] text-[#4F66BA] mb-4">
+                              {project.stats}
+                            </p>
+                          )}
+
+                          <div className="flex flex-wrap gap-2 mb-5">
+                            {project.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="font-mono text-[0.65rem] px-3 py-1 rounded-full bg-[#EAF5FF] border border-[#C7E4FA] text-[#3A4A7C]"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+
+                          <a
+                            href={project.link || '#'}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1.5 px-5 py-2 rounded-full bg-[#4F66BA] text-white border-[2px] border-[#2E4085] font-sans font-bold lowercase text-[0.9rem] no-underline hover:bg-[#3F55A8] transition-colors"
+                            style={{ boxShadow: '2px 3px 0px #9ED4F7' }}
+                          >
+                            view project
+                            <ArrowUpRight size={15} strokeWidth={2.5} />
+                          </a>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                )}
+
+                {/* Experiences list */}
+                {activeModal === 'experiences' && (
+                  <div className="flex flex-col divide-y divide-[#DCEEFF]">
+                    {experiences.map((exp, idx) => (
+                      <article
+                        key={exp.id}
+                        className={idx === 0 ? 'pb-8' : 'py-8'}
+                      >
+                        <p className="font-mono text-[0.72rem] uppercase tracking-[0.12em] text-[#5B6FA8] mb-1.5">
+                          {exp.period}
+                        </p>
+                        <h4 className="font-playfair font-bold text-[1.45rem] sm:text-[1.65rem] text-[#1E2A5E] leading-snug mb-1">
+                          {exp.role}
+                        </h4>
+                        <p className="font-mono text-[0.75rem] text-[#4F66BA] mb-3">
+                          {exp.org}
+                        </p>
+                        <p className="text-[0.95rem] leading-[1.75] text-[#3A4A7C]">
+                          {exp.desc}
+                        </p>
+                      </article>
+                    ))}
+                  </div>
+                )}
+
+                {/* Interests list */}
+                {activeModal === 'interests' && (
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    {interests.map((item) => (
+                      <article
+                        key={item.id}
+                        className="p-6 rounded-2xl bg-white border border-[#DCEEFF] shadow-[0_4px_16px_rgba(46,64,133,0.05)]"
+                      >
+                        <p className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-[#5B6FA8] mb-2">
+                          {item.meta}
+                        </p>
+                        <h4 className="font-playfair font-bold text-[1.25rem] text-[#1E2A5E] mb-2.5">
+                          {item.title}
+                        </h4>
+                        <p className="text-[0.9rem] leading-[1.7] text-[#3A4A7C]">
+                          {item.desc}
+                        </p>
+                      </article>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

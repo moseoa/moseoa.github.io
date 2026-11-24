@@ -37,6 +37,11 @@ const SketchbookMenu = () => {
       e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       window.history.replaceState(null, '', `#${id}`);
+      if (id === 'projects' || id === 'experiences' || id === 'interests') {
+        window.setTimeout(() => {
+          window.dispatchEvent(new CustomEvent('open-sketch-modal', { detail: id }));
+        }, 320);
+      }
     }
   };
 

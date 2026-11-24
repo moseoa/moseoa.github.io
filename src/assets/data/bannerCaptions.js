@@ -42,11 +42,16 @@ export const BANNER_CAPTIONS = {
     description: 'Met the Honourable Gregory Fergus, Speaker of the House of Commons of Canada',
   },
   'banner-08.jpg': {
+    title: 'Working on Parliament Hill',
+    meta: '2026 · Ottawa, ON',
+    description: 'My Hill friends <3',
+  },
+  'banner-09.jpg': {
     title: 'WWDC26',
     meta: '2026 · Toronto, ON',
     description: 'So many cool apps! ',
   },
-  'banner-09.jpg': {
+  'banner-10.jpg': {
     title: 'NB2026',
     meta: '2026 · Toronto, ON',
     description: 'Tennis Match! ',

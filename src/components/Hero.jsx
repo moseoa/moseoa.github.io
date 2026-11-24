@@ -1,5 +1,4 @@
 import React, { useLayoutEffect, useRef, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronDown } from 'lucide-react';
@@ -50,21 +49,12 @@ const Hero = ({ readyToAnimate = true }) => {
     <section
       id="home"
       ref={box}
-      className="min-h-screen relative flex flex-col items-center justify-center pt-20 md:pt-24 pb-24 overflow-x-hidden"
+      className="min-h-[76vh] relative flex flex-col items-center justify-center pt-14 md:pt-16 pb-10 md:pb-12 overflow-x-hidden"
     >
       {/* Scattered Interactive Floating Trinkets */}
       <FloatingTrinkets />
 
-      <div className="relative z-[1] flex flex-col items-center text-center gap-12 px-8">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="font-mono text-[0.7rem] uppercase tracking-[0.25em] text-rust"
-        >
-
-        </motion.p>
-
+      <div className="relative z-[1] flex flex-col items-center text-center gap-8 md:gap-10 px-8">
         <div className="relative leading-none flex items-center justify-center">
           <SketchbookTitle active={readyToAnimate} className="relative z-10" />
         </div>
@@ -93,7 +83,7 @@ const Hero = ({ readyToAnimate = true }) => {
       {/* Modern Scroll Indicator */}
       <div
         className={`
-          absolute bottom-12 left-1/2 -translate-x-1/2
+          absolute bottom-3 left-1/2 -translate-x-1/2
           flex items-center gap-3
           transition-all duration-500 ease-out
           ${showScroll ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}

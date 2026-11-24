@@ -219,7 +219,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="px-6 md:px-16 py-20 md:py-28 relative overflow-hidden"
+      className="px-6 md:px-16 pt-8 md:pt-12 pb-14 md:pb-20 relative overflow-hidden"
     >
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Animated handwritten "my sketches" header */}

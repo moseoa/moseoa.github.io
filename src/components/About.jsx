@@ -27,7 +27,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="px-6 md:px-16 py-20 md:py-32 relative overflow-hidden"
+      className="px-6 md:px-16 py-14 md:py-20 relative overflow-hidden"
     >
       <div className="relative z-10 max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-center gap-12 md:gap-16 lg:gap-20">
         {/* Left: Circular framed headshot in blue, navy & white */}

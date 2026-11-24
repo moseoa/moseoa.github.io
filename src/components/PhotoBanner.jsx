@@ -257,7 +257,7 @@ const PhotoBanner = () => {
   return (
     <section
       aria-label="Photo moments gallery"
-      className="relative w-full py-10 md:py-14 overflow-hidden"
+      className="relative w-full py-2 md:py-4 overflow-hidden"
     >
       {/* Infinite marquee track with transparent edge fade mask so ASCII backdrop stays seamless */}
       <div

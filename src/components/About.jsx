@@ -3,7 +3,7 @@ import { Download, ExternalLink, X, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Icon from './Icon';
 import AboutMeTitle from './AboutMeTitle';
-import resumePdf from '../assets/resume/SeoaMo_Resume.pdf';
+import resumePdf from '../assets/resume/Resume_Seoa_Mo.pdf';
 import headshotSrc from '../assets/images/seoa-headshot.jpg';
 import starSrc from '../assets/images/trinket-star.png';
 
@@ -165,7 +165,7 @@ const About = () => {
                 <div className="flex items-center gap-5">
                   <a
                     href={resumePdf}
-                    download="SeoaMo_Resume.pdf"
+                    download="Resume_Seoa_Mo.pdf"
                     className="inline-flex items-center gap-1.5 font-mono text-[0.68rem] uppercase tracking-[0.1em] text-[#3A4A7C] no-underline transition-colors hover:text-[#4F66BA]"
                   >
                     <Download size={13} />
